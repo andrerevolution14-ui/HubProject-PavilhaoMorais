@@ -55,39 +55,69 @@ export default function Step5Offer({ onNext }: Step5Props) {
             className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
         >
             <div className="max-w-5xl w-full">
-                {/* STICKY POPUP */}
+                {/* CENTERED MODAL POPUP */}
                 <AnimatePresence>
                     {showPopup && (
-                        <motion.div
-                            initial={{ y: 100, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: 100, opacity: 0 }}
-                            className="fixed bottom-6 left-4 right-4 z-[100] md:left-auto md:right-8 md:bottom-8 md:max-w-sm"
-                        >
-                            <div className="bg-[#003366] text-white p-5 md:p-6 rounded-2xl shadow-2xl border-2 border-yellow-400 relative">
-                                <button
-                                    onClick={() => setShowPopup(false)}
-                                    className="absolute -top-2 -right-2 bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg font-bold"
-                                >
-                                    ×
-                                </button>
-                                <div className="flex items-center gap-3 mb-3">
-                                    <span className="text-3xl animate-bounce">📢</span>
-                                    <p className="font-black text-lg leading-tight">Última Oportunidade Off-Market!</p>
+                        <>
+                            {/* Backdrop */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setShowPopup(false)}
+                                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110]"
+                            />
+
+                            {/* Modal */}
+                            <motion.div
+                                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                                className="fixed inset-0 flex items-center justify-center z-[120] px-4 pointer-events-none"
+                            >
+                                <div className="bg-white text-[#003366] p-8 md:p-10 rounded-3xl shadow-2xl max-w-lg w-full relative pointer-events-auto border border-gray-100">
+                                    <button
+                                        onClick={() => setShowPopup(false)}
+                                        className="absolute top-4 right-4 text-gray-400 hover:text-[#003366] transition-colors"
+                                    >
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-[#F5F7FA] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                                            💬
+                                        </div>
+
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">
+                                            Gostaria de falar com o proprietário?
+                                        </h3>
+
+                                        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                                            Se tiver interesse em validar os dados apresentados ou agendar uma visita técnica ao pavilhão, pode contactar-nos diretamente via WhatsApp.
+                                        </p>
+
+                                        <div className="space-y-3">
+                                            <a
+                                                href={investorWhatsAppLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block w-full py-4 bg-[#003366] text-white font-bold text-lg rounded-xl hover:bg-[#004488] transition-all transform hover:scale-[1.02] shadow-xl"
+                                            >
+                                                Iniciar Conversa no WhatsApp
+                                            </a>
+                                            <button
+                                                onClick={() => setShowPopup(false)}
+                                                className="block w-full py-3 text-gray-400 font-medium hover:text-[#003366] transition-colors"
+                                            >
+                                                Continuar a ler a análise
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p className="text-sm text-white/90 mb-4 leading-relaxed">
-                                    Leu até aqui porque reconhece o valor deste ativo. <strong className="text-yellow-300">Não deixe esta yield de 8% fugir.</strong>
-                                </p>
-                                <a
-                                    href={investorWhatsAppLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full py-3 bg-yellow-400 text-[#003366] font-black text-center rounded-xl hover:bg-yellow-300 transition-colors shadow-lg"
-                                >
-                                    Enviar Mensagem Agora
-                                </a>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </>
                     )}
                 </AnimatePresence>
 
