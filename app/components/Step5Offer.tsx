@@ -1,12 +1,20 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 interface Step5Props {
     onNext?: () => void;
 }
 
 export default function Step5Offer({ onNext }: Step5Props) {
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setShowPopup(true), 4000);
+        return () => clearTimeout(timer);
+    }, []);
+
     // IMPORTANTE: Substituir com o número de WhatsApp real
     const investorWhatsAppLink = "https://wa.me/351XXXXXXXXX?text=Olá,%20sou%20investidor%20e%20gostaria%20de%20validar%20o%20yield%20e%20agendar%20visita%20ao%20pavilhão%20em%20Amoreira%20da%20Gândara.";
     const ownerWhatsAppLink = "https://wa.me/351XXXXXXXXX?text=Olá,%20sou%20proprietário/empresa%20e%20gostaria%20de%20receber%20a%20planta%20técnica%20do%20pavilhão%20N333-1.";
@@ -44,9 +52,45 @@ export default function Step5Offer({ onNext }: Step5Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-isometric-light flex items-center justify-center px-4 py-12"
+            className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
         >
             <div className="max-w-5xl w-full">
+                {/* STICKY POPUP */}
+                <AnimatePresence>
+                    {showPopup && (
+                        <motion.div
+                            initial={{ y: 100, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 100, opacity: 0 }}
+                            className="fixed bottom-6 left-4 right-4 z-[100] md:left-auto md:right-8 md:bottom-8 md:max-w-sm"
+                        >
+                            <div className="bg-[#003366] text-white p-5 md:p-6 rounded-2xl shadow-2xl border-2 border-yellow-400 relative">
+                                <button
+                                    onClick={() => setShowPopup(false)}
+                                    className="absolute -top-2 -right-2 bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg font-bold"
+                                >
+                                    ×
+                                </button>
+                                <div className="flex items-center gap-3 mb-3">
+                                    <span className="text-3xl animate-bounce">📢</span>
+                                    <p className="font-black text-lg leading-tight">Última Oportunidade Off-Market!</p>
+                                </div>
+                                <p className="text-sm text-white/90 mb-4 leading-relaxed">
+                                    Leu até aqui porque reconhece o valor deste ativo. <strong className="text-yellow-300">Não deixe esta yield de 8% fugir.</strong>
+                                </p>
+                                <a
+                                    href={investorWhatsAppLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full py-3 bg-yellow-400 text-[#003366] font-black text-center rounded-xl hover:bg-yellow-300 transition-colors shadow-lg"
+                                >
+                                    Enviar Mensagem Agora
+                                </a>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
                 <div className="text-center space-y-6 md:space-y-8">
                     <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-yellow-100 to-orange-100 border border-yellow-300 rounded-full text-xs md:text-sm font-bold text-yellow-900">
                         💰 Oportunidade Exclusiva — Off-Market
@@ -191,7 +235,7 @@ export default function Step5Offer({ onNext }: Step5Props) {
                             transition={{ delay: 0.6 }}
                             className="bg-[#003366] bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-5 md:p-8 mb-6 shadow-2xl mx-2 md:mx-0 border-2 border-white/10"
                         >
-                            <div className="text-center mb-6 md:mb-8">
+                            <div className="text-center mb-6 md:mb-8 text-white">
                                 <div className="inline-block px-4 py-2 bg-yellow-400 rounded-full mb-4 shadow-md">
                                     <p className="text-[#003366] text-xs md:text-sm font-black uppercase tracking-wider">
                                         Oferta Exclusiva Limitada
@@ -209,7 +253,7 @@ export default function Step5Offer({ onNext }: Step5Props) {
                                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 mb-6">
                                     <div className="text-center md:text-right">
                                         <p className="text-white/60 text-xs md:text-sm mb-1 uppercase font-bold tracking-widest">Preço de Mercado</p>
-                                        <p className="text-2xl md:text-4xl text-white/50 line-through font-bold">€1.350.0000</p>
+                                        <p className="text-2xl md:text-4xl text-white/50 line-through font-bold">€1.350.000</p>
                                     </div>
                                     <div className="hidden md:block text-yellow-400 text-4xl animate-pulse">➔</div>
                                     <div className="text-center md:text-left">

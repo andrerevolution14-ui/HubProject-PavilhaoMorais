@@ -19,7 +19,7 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-isometric-light flex items-center justify-center px-4 py-12"
+      className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
     >
       <div className="max-w-7xl w-full">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -86,11 +86,14 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
           </div>
 
           {/* Right: Visual Data */}
-          <div className="space-y-4 md:space-y-6">
-            <div className="bg-[#002244] bg-isometric-dark rounded-xl md:rounded-2xl p-6 md:p-8 text-white shadow-2xl relative overflow-hidden">
+          <div className="space-y-6 md:space-y-8">
+            <div className="bg-[#002244] bg-premium-blue rounded-2xl md:rounded-3xl p-6 md:p-10 text-white shadow-2xl relative overflow-hidden border border-white/10">
               <div className="relative z-10">
-                <h3 className="text-xl md:text-2xl font-black mb-3 md:mb-4 tracking-tight">💡 Porque É Que Isto Aconteceu:</h3>
-                <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
+                <h3 className="text-xl md:text-3xl font-black mb-4 md:mb-6 tracking-tight flex items-center gap-3">
+                  <span className="text-2xl md:text-4xl">💡</span>
+                  <span>Porque É Que Isto Aconteceu:</span>
+                </h3>
+                <div className="space-y-4 md:space-y-5 text-sm md:text-lg">
                   <p className="flex items-start gap-2">
                     <span className="text-yellow-300 flex-shrink-0">✓</span>
                     <span>O e-commerce <strong>duplicou</strong> a procura por armazéns desde 2020</span>

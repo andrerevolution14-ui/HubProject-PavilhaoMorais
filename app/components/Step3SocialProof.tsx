@@ -38,7 +38,7 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-isometric-light flex items-center justify-center px-4 py-12"
+            className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
         >
             <div className="max-w-6xl w-full">
                 <div className="text-center space-y-6 md:space-y-8">
