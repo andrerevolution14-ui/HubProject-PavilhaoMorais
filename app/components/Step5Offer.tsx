@@ -9,11 +9,26 @@ interface Step5Props {
 
 export default function Step5Offer({ onNext }: Step5Props) {
     const [showPopup, setShowPopup] = useState(false);
+    const [hasTriggered, setHasTriggered] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => setShowPopup(true), 4000);
-        return () => clearTimeout(timer);
-    }, []);
+        const handleScroll = () => {
+            if (hasTriggered) return;
+
+            // Check if user is near the bottom (within 100px)
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.scrollY || window.pageYOffset;
+
+            if (windowHeight + scrollTop >= documentHeight - 50) {
+                setShowPopup(true);
+                setHasTriggered(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [hasTriggered]);
 
     // IMPORTANTE: Substituir com o número de WhatsApp real
     const investorWhatsAppLink = "https://wa.me/351XXXXXXXXX?text=Olá,%20sou%20investidor%20e%20gostaria%20de%20validar%20o%20yield%20e%20agendar%20visita%20ao%20pavilhão%20em%20Amoreira%20da%20Gândara.";
@@ -90,12 +105,12 @@ export default function Step5Offer({ onNext }: Step5Props) {
                                             💬
                                         </div>
 
-                                        <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">
-                                            Gostaria de falar com o proprietário?
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight text-center">
+                                            Ficou com alguma dúvida?
                                         </h3>
 
-                                        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                                            Se tiver interesse em validar os dados apresentados ou agendar uma visita técnica ao pavilhão, pode contactar-nos diretamente via WhatsApp.
+                                        <p className="text-gray-600 text-lg mb-8 leading-relaxed text-center">
+                                            Para validar os dados de rentabilidade ou agendar uma visita ao ativo, <strong className="text-[#003366]">pode contactar-me</strong> diretamente através do WhatsApp.
                                         </p>
 
                                         <div className="space-y-3">
