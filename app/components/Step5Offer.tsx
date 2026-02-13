@@ -184,6 +184,62 @@ export default function Step5Offer({ onNext }: Step5Props) {
 
                         <div className="h-px bg-gradient-to-r from-transparent via-[#003366]/20 to-transparent my-8" />
 
+                        {/* PROFESSIONAL DISCOUNT OFFER */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 }}
+                            className="bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-6 md:p-8 mb-6 shadow-xl"
+                        >
+                            <div className="text-center mb-6">
+                                <div className="inline-block px-4 py-2 bg-yellow-400 rounded-full mb-4">
+                                    <p className="text-[#003366] text-sm font-bold uppercase tracking-wide">
+                                        Oferta Exclusiva
+                                    </p>
+                                </div>
+                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                                    Desconto para Primeiros Contactos
+                                </h3>
+                                <p className="text-white/90 text-base md:text-lg max-w-2xl mx-auto">
+                                    Ao contactar o proprietário através desta página, beneficia automaticamente de um desconto especial.
+                                </p>
+                            </div>
+
+                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-6">
+                                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-4">
+                                    <div className="text-center md:text-right">
+                                        <p className="text-white/70 text-sm mb-1">Preço Público</p>
+                                        <p className="text-2xl md:text-3xl text-white/60 line-through">€1.350.000</p>
+                                    </div>
+                                    <div className="hidden md:block text-white/40 text-3xl">→</div>
+                                    <div className="text-center md:text-left">
+                                        <p className="text-yellow-300 text-sm mb-1 font-semibold">Com Desconto Exclusivo</p>
+                                        <p className="text-3xl md:text-4xl text-yellow-300 font-bold">€1.300.000</p>
+                                    </div>
+                                </div>
+                                <div className="text-center pt-4 border-t border-white/20">
+                                    <p className="text-white font-semibold text-lg md:text-xl">
+                                        Poupança: <span className="text-yellow-300">€50.000</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                                <div className="bg-white/5 rounded-lg p-4 text-center">
+                                    <p className="text-yellow-300 font-semibold mb-1">✓ Aplicação Automática</p>
+                                    <p className="text-white/80 text-xs">Sem necessidade de negociação</p>
+                                </div>
+                                <div className="bg-white/5 rounded-lg p-4 text-center">
+                                    <p className="text-yellow-300 font-semibold mb-1">✓ Válido Hoje</p>
+                                    <p className="text-white/80 text-xs">Para contactos via esta página</p>
+                                </div>
+                                <div className="bg-white/5 rounded-lg p-4 text-center">
+                                    <p className="text-yellow-300 font-semibold mb-1">✓ Sem Compromisso</p>
+                                    <p className="text-white/80 text-xs">Apenas para validar interesse</p>
+                                </div>
+                            </div>
+                        </motion.div>
+
                         {/* Single CTA */}
                         <motion.a
                             href={investorWhatsAppLink}

@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 interface Step1Props {
   onNext: () => void;
@@ -88,20 +87,6 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
 
           {/* Right: Visual Data */}
           <div className="space-y-6">
-            {/* Real Chart Image */}
-            <div className="bg-white rounded-2xl p-4 shadow-xl">
-              <div className="relative w-full" style={{ minHeight: '400px' }}>
-                <Image
-                  src="/aveiro-saturation-chart.png"
-                  alt="Taxa de Ocupação Industrial - Aveiro 2020-2024"
-                  width={600}
-                  height={700}
-                  className="w-full h-auto object-contain"
-                  priority
-                />
-              </div>
-            </div>
-
             <div className="bg-gradient-to-br from-[#003366] to-[#004488] rounded-2xl p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">💡 Porque É Que Isto Aconteceu:</h3>
               <div className="space-y-3 text-sm">
@@ -132,6 +117,27 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
                 Decidiu investir numa <strong>alternativa estratégica</strong> a 15km de Aveiro.
                 Poupou €710k, arrendou por €9.000/mês, e tem <strong className="text-green-600">yield de 8%</strong>.
               </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 rounded-xl p-6">
+              <h4 className="font-bold text-[#003366] mb-3 flex items-center gap-2">
+                <span className="text-2xl">📈</span>
+                Dados de Mercado 2024
+              </h4>
+              <div className="space-y-2 text-sm text-gray-700">
+                <p className="flex justify-between">
+                  <span>Taxa de Ocupação Aveiro:</span>
+                  <strong className="text-red-600">98.7%</strong>
+                </p>
+                <p className="flex justify-between">
+                  <span>Tempo Médio de Venda:</span>
+                  <strong className="text-[#003366]">&lt; 45 dias</strong>
+                </p>
+                <p className="flex justify-between">
+                  <span>Valorização 2024-2026:</span>
+                  <strong className="text-green-600">+127%</strong>
+                </p>
+              </div>
             </div>
           </div>
         </div>
