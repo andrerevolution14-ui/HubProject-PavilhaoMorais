@@ -164,20 +164,24 @@ export default function Step4Asset({ onNext }: Step4Props) {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.5 + index * 0.1 }}
-                                        className="bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-4 md:p-6 text-white"
+                                        className="bg-[#003366] bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-5 md:p-6 text-white shadow-lg overflow-hidden relative"
                                     >
-                                        <h4 className="text-base md:text-lg font-bold mb-3 md:mb-4 flex items-center gap-2">
-                                            <span className="text-xl md:text-2xl">{index === 0 ? '🏭' : '🏢'}</span>
-                                            {floor.floor}
-                                        </h4>
-                                        <ul className="space-y-1.5 md:space-y-2">
-                                            {floor.features.map((feature, idx) => (
-                                                <li key={idx} className="flex items-start gap-2 text-xs md:text-sm">
-                                                    <span className="text-yellow-300 mt-0.5 flex-shrink-0">▸</span>
-                                                    <span>{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <div className="relative z-10 text-left">
+                                            <h4 className="text-lg md:text-xl font-black mb-3 md:mb-4 flex items-center gap-3">
+                                                <span className="text-2xl md:text-3xl bg-white/20 p-1.5 rounded-lg">{index === 0 ? '🏭' : '🏢'}</span>
+                                                <span className="tracking-tight">{floor.floor}</span>
+                                            </h4>
+                                            <ul className="space-y-2 md:space-y-3">
+                                                {floor.features.map((feature, idx) => (
+                                                    <li key={idx} className="flex items-start gap-3 text-sm md:text-base leading-snug">
+                                                        <span className="text-yellow-400 mt-1 flex-shrink-0 font-bold">▶</span>
+                                                        <span className="font-medium text-white/95">{feature}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        {/* Subtle pattern */}
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 -mr-16 -mt-16 rounded-full blur-2xl pointer-events-none" />
                                     </motion.div>
                                 ))}
                             </div>
@@ -185,15 +189,15 @@ export default function Step4Asset({ onNext }: Step4Props) {
 
                         {/* Key Highlights */}
                         <div className="border-t-2 border-gray-100 pt-6 md:pt-8">
-                            <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6">⭐ Destaques do Imóvel</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                            <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6 text-left">⭐ Destaques do Imóvel</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-left">
                                 {keyHighlights.map((highlight, index) => (
                                     <motion.div
                                         key={index}
                                         initial={{ opacity: 0, scale: 0.9 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ delay: 0.7 + index * 0.05 }}
-                                        className={`flex items-center gap-3 p-3 md:p-4 rounded-lg border-2 ${highlight.color === 'green'
+                                        className={`flex items-center gap-3 p-4 rounded-lg border-2 shadow-sm ${highlight.color === 'green'
                                             ? 'bg-green-50 border-green-200'
                                             : 'bg-blue-50 border-blue-200'
                                             }`}
@@ -202,7 +206,7 @@ export default function Step4Asset({ onNext }: Step4Props) {
                                             }`}>
                                             {highlight.icon}
                                         </span>
-                                        <p className={`font-semibold text-xs md:text-sm leading-tight ${highlight.color === 'green' ? 'text-green-800' : 'text-blue-800'
+                                        <p className={`font-bold text-sm md:text-base leading-tight ${highlight.color === 'green' ? 'text-green-900' : 'text-blue-900'
                                             }`}>
                                             {highlight.text}
                                         </p>
@@ -216,18 +220,20 @@ export default function Step4Asset({ onNext }: Step4Props) {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.9 }}
-                            className="mt-6 md:mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 rounded-xl p-4 md:p-6"
+                            className="mt-6 md:mt-8 bg-[#FFF8E1] border-2 border-yellow-400 rounded-xl p-5 md:p-8 shadow-lg text-left"
                         >
-                            <div className="flex items-start gap-4">
-                                <span className="text-2xl md:text-3xl flex-shrink-0">💡</span>
+                            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-6">
+                                <div className="text-4xl md:text-5xl bg-yellow-400 p-3 rounded-2xl shadow-inner flex-shrink-0 animate-pulse">
+                                    💡
+                                </div>
                                 <div>
-                                    <h4 className="font-bold text-[#003366] text-sm md:text-base mb-1 md:mb-2">Porque é que este pavilhão vale €1.35M?</h4>
-                                    <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
-                                        A <strong>€511/m²</strong>, está <strong>34% abaixo</strong> do preço médio de Aveiro.
+                                    <h4 className="font-black text-[#003366] text-lg md:text-2xl mb-2 md:mb-3">Porque é que este pavilhão vale €1.35M?</h4>
+                                    <p className="text-sm md:text-lg text-gray-800 leading-relaxed font-medium">
+                                        A <strong className="text-[#003366] bg-yellow-200 px-1 rounded">€511/m²</strong>, está <strong>34% abaixo</strong> do preço médio de Aveiro.
                                         Com <strong>2.640m² de área bruta</strong> e <strong>4.272m² de terreno</strong>, tem capacidade para gerar
-                                        <strong className="text-green-600"> €7.000-9.000/mês</strong> em arrendamento a empresas logísticas —
-                                        um <strong>yield bruto de 6.2-8.0%</strong>. Mais: a futura ligação à A1 pode valorizar o imóvel em
-                                        <strong className="text-[#003366]"> +€400-500k</strong> nos próximos 3-5 anos.
+                                        <strong className="text-green-700"> €7.000-9.000/mês</strong> em arrendamento —
+                                        um <strong>yield bruto de 6.2-8.0%</strong>. A futura ligação à A1 pode valorizar o imóvel em
+                                        <strong className="text-[#003366]"> +€400-500k</strong> nos próximos anos.
                                     </p>
                                 </div>
                             </div>

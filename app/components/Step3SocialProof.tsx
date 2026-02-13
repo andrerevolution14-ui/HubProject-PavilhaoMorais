@@ -66,67 +66,78 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.1 + index * 0.05 }}
-                                className={`aspect-square rounded-lg flex flex-col items-center justify-center font-semibold text-xs md:text-sm transition-all ${lot.reserved
+                                className={`aspect-square rounded-lg flex flex-col items-center justify-center font-semibold text-xs md:text-sm transition-all overflow-hidden ${lot.reserved
                                     ? lot.company
-                                        ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white shadow-xl border-2 border-yellow-700'
+                                        ? 'bg-[#FFCC00] text-[#003399] shadow-xl border-2 border-[#003399]'
                                         : 'bg-[#003366] text-white shadow-lg'
                                     : 'bg-[#F5F7FA] text-[#003366] border-2 border-[#003366] border-dashed'
                                     }`}
                             >
-                                {lot.company ? (
-                                    <>
-                                        <span className="text-[10px] md:text-xs mb-0.5 md:mb-1">RESERVADO</span>
-                                        <span className="text-sm md:text-lg font-bold">{lot.company}</span>
-                                    </>
+                                {lot.company === 'IKEA' ? (
+                                    <div className="flex flex-col items-center px-1">
+                                        <div className="w-full max-w-[50px] md:max-w-[70px] bg-[#003399] rounded-full p-1 mb-1">
+                                            <svg viewBox="0 0 24 12" className="w-full h-auto fill-white">
+                                                <path d="M0 6c0-3.314 5.373-6 12-6s12 2.686 12 6-5.373 6-12 6S0 9.314 0 6z" />
+                                                <text x="12" y="8.5" fontSize="6" fontWeight="bold" textAnchor="middle" fill="#FFCC00" style={{ fontFamily: 'Arial, sans-serif' }}>IKEA</text>
+                                            </svg>
+                                        </div>
+                                        <span className="text-[8px] md:text-[10px] font-black text-[#003399]">RESERVADO</span>
+                                    </div>
                                 ) : (
-                                    <span>{lot.reserved ? 'RESERVADO' : 'DISPONÍVEL'}</span>
+                                    <div className="flex flex-col items-center">
+                                        <span className="text-[10px] md:text-xs mb-0.5 md:mb-1">{lot.reserved ? 'RESERVADO' : 'LOTE'}</span>
+                                        <span className="text-[9px] md:text-[11px] opacity-70">Pavilhão {lot.id}</span>
+                                    </div>
                                 )}
                             </motion.div>
                         ))}
                     </div>
 
                     {/* Heatmap - CSS Based Occupation Visualization */}
-                    <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-xl mt-6 md:mt-12">
+                    <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-xl mt-6 md:mt-12 border border-gray-100">
                         <h3 className="text-lg md:text-xl font-bold text-[#003366] mb-3 md:mb-4 text-center">
                             📍 Taxa de Ocupação da Zona Industrial
                         </h3>
 
                         {/* Heatmap Bar */}
-                        <div className="relative h-12 md:h-16 bg-gray-200 rounded-full overflow-hidden mb-4 md:mb-6">
+                        <div className="relative h-12 md:h-16 bg-gray-200 rounded-full overflow-hidden mb-4 md:mb-6 border border-gray-300">
                             <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: `${heatIntensity}%` }}
-                                transition={{ duration: 1.5, ease: "easeOut" }}
-                                className="absolute inset-y-0 left-0 bg-gradient-to-r from-green-500 via-yellow-500 to-red-600 rounded-full"
+                                initial={{ width: "0%" }}
+                                animate={{ width: "85%" }}
+                                transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+                                className="absolute inset-y-0 left-0 bg-[#003366] rounded-full z-0"
+                                style={{
+                                    background: 'linear-gradient(90deg, #22c55e 0%, #eab308 50%, #dc2626 100%)'
+                                }}
                             />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-base md:text-xl font-bold text-white drop-shadow-lg z-10">
-                                    {heatIntensity}% OCUPADO
+                            <div className="absolute inset-0 flex items-center justify-center z-10">
+                                <span className="text-lg md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                                    85% OCUPADO
                                 </span>
                             </div>
                         </div>
 
                         {/* Legend */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 text-xs md:text-sm">
+                        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 text-[10px] md:text-sm">
                             <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 md:w-5 md:h-5 bg-green-500 rounded"></div>
-                                <span className="text-gray-700">0-30% (Disponível)</span>
+                                <div className="w-3 h-3 md:w-5 md:h-5 bg-green-500 rounded shadow-sm"></div>
+                                <span className="text-gray-700 font-medium">0-30% (Disponível)</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 md:w-5 md:h-5 bg-yellow-500 rounded"></div>
-                                <span className="text-gray-700">30-70% (Moderado)</span>
+                                <div className="w-3 h-3 md:w-5 md:h-5 bg-yellow-500 rounded shadow-sm"></div>
+                                <span className="text-gray-700 font-medium">30-70% (Moderado)</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 md:w-5 md:h-5 bg-red-600 rounded"></div>
-                                <span className="text-gray-700">70-100% (Saturado)</span>
+                                <div className="w-3 h-3 md:w-5 md:h-5 bg-red-600 rounded shadow-sm"></div>
+                                <span className="text-gray-700 font-medium">70-100% (Saturado)</span>
                             </div>
                         </div>
 
-                        <div className="mt-4 md:mt-6 p-3 md:p-4 bg-red-50 border-l-4 border-red-600 rounded">
-                            <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+                        <div className="mt-4 md:mt-6 p-4 bg-red-50 border-l-4 border-red-600 rounded shadow-sm">
+                            <p className="text-xs md:text-base text-gray-700 leading-relaxed text-left md:text-center">
                                 <strong className="text-red-700">Alerta de Mercado:</strong> Com 85% de ocupação,
                                 esta zona está oficialmente em <strong>saturação crítica</strong>.
-                                Apenas <strong>2 lotes</strong> permanecem disponíveis para investimento direto.
+                                Apenas <strong>2 pavilhões premium</strong> permanecem para investimento.
                             </p>
                         </div>
                     </div>
@@ -135,7 +146,7 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                     <div className="mt-8 md:mt-12 text-center px-4">
                         <button
                             onClick={onNext}
-                            className="group w-full md:w-auto px-6 md:px-8 py-4 md:py-5 bg-[#003366] text-white font-bold text-base md:text-lg rounded-xl hover:bg-[#004488] transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 md:gap-3"
+                            className="group w-full md:w-auto px-6 md:px-8 py-4 md:py-5 bg-[#1a365d] text-white font-bold text-base md:text-lg rounded-xl hover:bg-[#004488] transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 md:gap-3"
                         >
                             <span>Ver Oportunidade Disponível (Off-Market)</span>
                             <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

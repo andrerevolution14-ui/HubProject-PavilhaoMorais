@@ -189,53 +189,53 @@ export default function Step5Offer({ onNext }: Step5Props) {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
-                            className="bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-4 md:p-8 mb-6 shadow-xl mx-2 md:mx-0"
+                            className="bg-[#003366] bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-5 md:p-8 mb-6 shadow-2xl mx-2 md:mx-0 border-2 border-white/10"
                         >
-                            <div className="text-center mb-5 md:mb-6">
-                                <div className="inline-block px-3 md:px-4 py-1 md:py-2 bg-yellow-400 rounded-full mb-3 md:mb-4">
-                                    <p className="text-[#003366] text-[10px] md:text-sm font-bold uppercase tracking-wide">
-                                        Oferta Exclusiva
+                            <div className="text-center mb-6 md:mb-8">
+                                <div className="inline-block px-4 py-2 bg-yellow-400 rounded-full mb-4 shadow-md">
+                                    <p className="text-[#003366] text-xs md:text-sm font-black uppercase tracking-wider">
+                                        Oferta Exclusiva Limitada
                                     </p>
                                 </div>
-                                <h3 className="text-xl md:text-3xl font-bold text-white mb-2 md:mb-3 leading-tight">
-                                    Desconto para Primeiros Contactos
+                                <h3 className="text-2xl md:text-4xl font-black text-white mb-3 leading-tight tracking-tight">
+                                    Desconto Imediato de €50.000
                                 </h3>
-                                <p className="text-white/90 text-sm md:text-lg max-w-2xl mx-auto px-2">
-                                    Ao contactar o proprietário através desta página, beneficia automaticamente de um desconto especial.
+                                <p className="text-white/90 text-sm md:text-xl max-w-2xl mx-auto px-2 font-medium">
+                                    Beneficie de condições únicas ao contactar o proprietário diretamente através deste portal oficial.
                                 </p>
                             </div>
 
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 mb-5 md:mb-6">
-                                <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 mb-4">
+                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 md:p-8 mb-6 md:mb-8 border border-white/20">
+                                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 mb-6">
                                     <div className="text-center md:text-right">
-                                        <p className="text-white/70 text-[10px] md:text-sm mb-0.5 md:mb-1 uppercase">Preço Público</p>
-                                        <p className="text-xl md:text-3xl text-white/60 line-through">€1.350.000</p>
+                                        <p className="text-white/60 text-xs md:text-sm mb-1 uppercase font-bold tracking-widest">Preço de Mercado</p>
+                                        <p className="text-2xl md:text-4xl text-white/50 line-through font-bold">€1.350.0000</p>
                                     </div>
-                                    <div className="hidden md:block text-white/40 text-3xl">→</div>
+                                    <div className="hidden md:block text-yellow-400 text-4xl animate-pulse">➔</div>
                                     <div className="text-center md:text-left">
-                                        <p className="text-yellow-300 text-[10px] md:text-sm mb-0.5 md:mb-1 font-semibold uppercase">Com Desconto Exclusivo</p>
-                                        <p className="text-2xl md:text-4xl lg:text-5xl text-yellow-300 font-bold">€1.300.000</p>
+                                        <p className="text-yellow-400 text-xs md:text-sm mb-1 font-black uppercase tracking-widest">Preço com Acordo Direto</p>
+                                        <p className="text-4xl md:text-6xl text-yellow-400 font-black drop-shadow-lg">€1.300.000</p>
                                     </div>
                                 </div>
-                                <div className="text-center pt-3 md:pt-4 border-t border-white/20">
-                                    <p className="text-white font-semibold text-base md:text-xl">
-                                        Poupança: <span className="text-yellow-300">€50.000</span>
+                                <div className="text-center pt-5 md:pt-6 border-t border-white/20">
+                                    <p className="text-white font-black text-xl md:text-3xl">
+                                        POUPANÇA TOTAL: <span className="text-yellow-400">€50.000</span>
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3 text-[10px] md:text-sm">
-                                <div className="bg-white/5 rounded-lg p-3 md:p-4 text-center">
-                                    <p className="text-yellow-300 font-semibold mb-0.5 md:mb-1">✓ Aplicação Automática</p>
-                                    <p className="text-white/80 text-[10px]">Sem necessidade de negociação</p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-xs md:text-base">
+                                <div className="bg-white/10 rounded-xl p-4 text-center border border-white/5">
+                                    <p className="text-yellow-400 font-black mb-1">✓ Sem Intermediários</p>
+                                    <p className="text-white/80 text-[10px] md:text-xs">Negócio direto com o proprietário</p>
                                 </div>
-                                <div className="bg-white/5 rounded-lg p-3 md:p-4 text-center">
-                                    <p className="text-yellow-300 font-semibold mb-0.5 md:mb-1">✓ Válido Hoje</p>
-                                    <p className="text-white/80 text-[10px]">Para contactos via esta página</p>
+                                <div className="bg-white/10 rounded-xl p-4 text-center border border-white/5">
+                                    <p className="text-yellow-400 font-black mb-1">✓ Escritura Imediata</p>
+                                    <p className="text-white/80 text-[10px] md:text-xs">Documentação pronta a assinar</p>
                                 </div>
-                                <div className="bg-white/5 rounded-lg p-3 md:p-4 text-center">
-                                    <p className="text-yellow-300 font-semibold mb-0.5 md:mb-1">✓ Sem Compromisso</p>
-                                    <p className="text-white/80 text-[10px]">Apenas para validar interesse</p>
+                                <div className="bg-white/10 rounded-xl p-4 text-center border border-white/5">
+                                    <p className="text-yellow-400 font-black mb-1">✓ Válido via Portal</p>
+                                    <p className="text-white/80 text-[10px] md:text-xs">Exclusivo para contactos deste site</p>
                                 </div>
                             </div>
                         </motion.div>
