@@ -44,7 +44,7 @@ export default function Step5Offer({ onNext }: Step5Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-white flex items-center justify-center px-4 py-12"
+            className="min-h-screen bg-isometric-light flex items-center justify-center px-4 py-12"
         >
             <div className="max-w-5xl w-full">
                 <div className="text-center space-y-6 md:space-y-8">

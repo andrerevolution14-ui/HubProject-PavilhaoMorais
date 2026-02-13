@@ -19,7 +19,7 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white flex items-center justify-center px-4 py-12"
+      className="min-h-screen bg-isometric-light flex items-center justify-center px-4 py-12"
     >
       <div className="max-w-7xl w-full">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -87,25 +87,27 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
 
           {/* Right: Visual Data */}
           <div className="space-y-4 md:space-y-6">
-            <div className="bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl md:rounded-2xl p-6 md:p-8 text-white">
-              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">💡 Porque É Que Isto Aconteceu:</h3>
-              <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
-                <p className="flex items-start gap-2">
-                  <span className="text-yellow-300 flex-shrink-0">✓</span>
-                  <span>O e-commerce <strong>duplicou</strong> a procura por armazéns desde 2020</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-yellow-300 flex-shrink-0">✓</span>
-                  <span>Grandes operadores pagam <strong>yields de 7-9%</strong> — muito acima do residencial</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-yellow-300 flex-shrink-0">✓</span>
-                  <span>Aveiro tornou-se <strong>o hub logístico</strong> da Região Centro</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-yellow-300 flex-shrink-0">✓</span>
-                  <span>Resultado: <strong>procura 5x superior à oferta</strong></span>
-                </p>
+            <div className="bg-[#002244] bg-isometric-dark rounded-xl md:rounded-2xl p-6 md:p-8 text-white shadow-2xl relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-xl md:text-2xl font-black mb-3 md:mb-4 tracking-tight">💡 Porque É Que Isto Aconteceu:</h3>
+                <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
+                  <p className="flex items-start gap-2">
+                    <span className="text-yellow-300 flex-shrink-0">✓</span>
+                    <span>O e-commerce <strong>duplicou</strong> a procura por armazéns desde 2020</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span className="text-yellow-300 flex-shrink-0">✓</span>
+                    <span>Grandes operadores pagam <strong>yields de 7-9%</strong> — muito acima do residencial</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span className="text-yellow-300 flex-shrink-0">✓</span>
+                    <span>Aveiro tornou-se <strong>o hub logístico</strong> da Região Centro</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span className="text-yellow-300 flex-shrink-0">✓</span>
+                    <span>Resultado: <strong>procura 5x superior à oferta</strong></span>
+                  </p>
+                </div>
               </div>
             </div>
 

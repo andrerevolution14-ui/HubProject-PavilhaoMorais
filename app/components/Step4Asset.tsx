@@ -49,7 +49,7 @@ export default function Step4Asset({ onNext }: Step4Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-[#F5F7FA] flex items-center justify-center px-4 py-12"
+            className="min-h-screen bg-[#F5F7FA] bg-isometric-grid flex items-center justify-center px-4 py-12"
         >
             <div className="max-w-6xl w-full">
                 <div className="space-y-6 md:space-y-8">
