@@ -86,76 +86,63 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                     </div>
 
                     {/* Heatmap - CSS Based Occupation Visualization */}
-                    <div className="bg-white rounded-2xl p-8 shadow-xl mt-12">
-                        <h3 className="text-xl font-bold text-[#003366] mb-4 text-center">
-                            🗺️ Mapa de Ocupação - Zona Industrial Amoreira da Gândara
+                    <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-xl mt-6 md:mt-12">
+                        <h3 className="text-lg md:text-xl font-bold text-[#003366] mb-3 md:mb-4 text-center">
+                            📍 Taxa de Ocupação da Zona Industrial
                         </h3>
-                        <p className="text-sm text-gray-600 text-center mb-6">
-                            Visualização da densidade de ocupação por setor
-                        </p>
 
-                        <div className="grid grid-cols-8 gap-2 max-w-2xl mx-auto">
-                            {Array.from({ length: 64 }, (_, i) => {
-                                const isHighDensity = i < 54; // 85% occupied
-                                const isMediumDensity = i >= 54 && i < 60;
-                                const isAvailable = i >= 60;
-
-                                return (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0, scale: 0 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: 0.01 * i }}
-                                        className={`aspect-square rounded-sm transition-all hover:scale-110 ${isHighDensity
-                                            ? 'bg-red-500 hover:bg-red-600'
-                                            : isMediumDensity
-                                                ? 'bg-orange-400 hover:bg-orange-500'
-                                                : 'bg-green-400 hover:bg-green-500'
-                                            }`}
-                                        title={
-                                            isHighDensity
-                                                ? 'Ocupado'
-                                                : isMediumDensity
-                                                    ? 'Ocupação Média'
-                                                    : 'Disponível'
-                                        }
-                                    />
-                                );
-                            })}
-                        </div>
-
-                        <div className="flex items-center justify-center gap-6 mt-6 text-sm">
-                            <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-red-500 rounded"></div>
-                                <span className="text-gray-700">Ocupado (85%)</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-orange-400 rounded"></div>
-                                <span className="text-gray-700">Ocupação Média (9%)</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-green-400 rounded"></div>
-                                <span className="text-gray-700">Disponível (6%)</span>
+                        {/* Heatmap Bar */}
+                        <div className="relative h-12 md:h-16 bg-gray-200 rounded-full overflow-hidden mb-4 md:mb-6">
+                            <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${heatIntensity}%` }}
+                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                className="absolute inset-y-0 left-0 bg-gradient-to-r from-green-500 via-yellow-500 to-red-600 rounded-full"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="text-base md:text-xl font-bold text-white drop-shadow-lg z-10">
+                                    {heatIntensity}% OCUPADO
+                                </span>
                             </div>
                         </div>
 
-                        <p className="text-xs text-gray-500 text-center mt-4">
-                            Fonte: Levantamento de mercado - Zona Industrial Amoreira da Gândara
-                        </p>
+                        {/* Legend */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 text-xs md:text-sm">
+                            <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 md:w-5 md:h-5 bg-green-500 rounded"></div>
+                                <span className="text-gray-700">0-30% (Disponível)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 md:w-5 md:h-5 bg-yellow-500 rounded"></div>
+                                <span className="text-gray-700">30-70% (Moderado)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 md:w-5 md:h-5 bg-red-600 rounded"></div>
+                                <span className="text-gray-700">70-100% (Saturado)</span>
+                            </div>
+                        </div>
+
+                        <div className="mt-4 md:mt-6 p-3 md:p-4 bg-red-50 border-l-4 border-red-600 rounded">
+                            <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+                                <strong className="text-red-700">Alerta de Mercado:</strong> Com 85% de ocupação,
+                                esta zona está oficialmente em <strong>saturação crítica</strong>.
+                                Apenas <strong>2 lotes</strong> permanecem disponíveis para investimento direto.
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                {/* CTA Button at the very end */}
-                <div className="mt-8 md:mt-12 text-center px-4">
-                    <button
-                        onClick={onNext}
-                        className="group w-full md:w-auto px-6 md:px-8 py-4 md:py-5 bg-[#003366] text-white font-bold text-base md:text-lg rounded-xl hover:bg-[#004488] transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 md:gap-3"
-                    >
-                        <span>Ver Oportunidade Disponível (Off-Market)</span>
-                        <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                    </button>
+                    {/* CTA Button at the very end */}
+                    <div className="mt-8 md:mt-12 text-center px-4">
+                        <button
+                            onClick={onNext}
+                            className="group w-full md:w-auto px-6 md:px-8 py-4 md:py-5 bg-[#003366] text-white font-bold text-base md:text-lg rounded-xl hover:bg-[#004488] transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 md:gap-3"
+                        >
+                            <span>Ver Oportunidade Disponível (Off-Market)</span>
+                            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </motion.div>
