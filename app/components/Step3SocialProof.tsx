@@ -1,22 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 interface Step3Props {
     onNext: () => void;
 }
 
 export default function Step3SocialProof({ onNext }: Step3Props) {
-    const [heatIntensity, setHeatIntensity] = useState(0);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setHeatIntensity(85);
-        }, 500);
-        return () => clearTimeout(timer);
-    }, []);
-
     const lots = [
         { id: 1, reserved: true, company: 'IKEA' },
         { id: 2, reserved: true },
@@ -33,40 +23,54 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
-        >
+        <div className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20">
             <div className="max-w-6xl w-full">
                 <div className="text-center space-y-6 md:space-y-8">
-                    <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-[#F5F7FA] rounded-full text-xs md:text-sm font-medium text-[#003366]">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
+                        className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-[#F5F7FA] rounded-full text-xs md:text-sm font-medium text-[#003366]"
+                    >
                         Análise de Mercado
-                    </div>
+                    </motion.div>
 
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] leading-tight">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] leading-tight"
+                    >
                         Quem já se posicionou?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="text-base md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.14 }}
+                        className="text-base md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+                    >
                         <span className="text-2xl md:text-3xl font-bold text-[#003366]">85%</span> dos lotes premium nesta zona já foram adquiridos por empresas de Logística e Metalomecânica.
-                    </p>
+                    </motion.p>
 
-                    <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.18 }}
+                        className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto"
+                    >
                         A janela de oportunidade para entrada a preços de 2024 está a fechar.
-                    </p>
+                    </motion.p>
 
                     {/* Lots Grid */}
                     <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mt-8 md:mt-12 max-w-4xl mx-auto">
                         {lots.map((lot, index) => (
                             <motion.div
                                 key={lot.id}
-                                initial={{ opacity: 0, scale: 0.6, y: 10 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                transition={{ delay: 0.3 + index * 0.12, duration: 0.6, type: 'spring', stiffness: 80, damping: 15 }}
-                                className={`aspect-square rounded-lg flex flex-col items-center justify-center font-semibold text-xs md:text-sm transition-all overflow-hidden ${lot.reserved
+                                initial={{ opacity: 0, scale: 0.7 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.25 + index * 0.07, duration: 0.45, ease: 'easeOut' }}
+                                className={`aspect-square rounded-xl flex flex-col items-center justify-center font-semibold text-xs md:text-sm overflow-hidden shadow-sm ${lot.reserved
                                     ? lot.company
                                         ? 'bg-[#FFCC00] text-[#003399] shadow-xl border-2 border-[#003399]'
                                         : 'bg-[#003366] text-white shadow-lg'
@@ -94,7 +98,12 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                     </div>
 
                     {/* Heatmap - CSS Based Occupation Visualization */}
-                    <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-xl mt-6 md:mt-12 border border-gray-100">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.45 }}
+                        className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-xl mt-6 md:mt-12 border border-gray-100"
+                    >
                         <h3 className="text-lg md:text-xl font-bold text-[#003366] mb-3 md:mb-4 text-center">
                             📍 Taxa de Ocupação da Zona Industrial
                         </h3>
@@ -104,8 +113,8 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                             <motion.div
                                 initial={{ width: "0%" }}
                                 animate={{ width: "85%" }}
-                                transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-                                className="absolute inset-y-0 left-0 bg-[#003366] rounded-full z-0"
+                                transition={{ duration: 1.8, ease: 'easeOut', delay: 0.5 }}
+                                className="absolute inset-y-0 left-0 rounded-full z-0"
                                 style={{
                                     background: 'linear-gradient(90deg, #22c55e 0%, #eab308 50%, #dc2626 100%)'
                                 }}
@@ -140,23 +149,27 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                                 Apenas <strong>2 pavilhões premium</strong> permanecem para investimento.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* CTA Button at the very end */}
-                    <div className="mt-8 md:mt-12 text-center px-4">
+                    {/* CTA Button */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.55 }}
+                        className="mt-8 md:mt-12 text-center px-4"
+                    >
                         <button
                             onClick={onNext}
-                            className="group relative w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3 overflow-hidden border border-white/10"
+                            className="group w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3"
                         >
-                            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                             <span>Ver Oportunidade Disponível (Off-Market)</span>
-                            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
                         </button>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }

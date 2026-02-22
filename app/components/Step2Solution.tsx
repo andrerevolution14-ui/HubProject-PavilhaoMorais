@@ -43,37 +43,51 @@ export default function Step2Solution({ onNext }: Step2Props) {
 
     const comparativeData = [
         { location: 'Aveiro Centro', pricePerM2: '€850/m²', availability: 'Esgotado', waitTime: '12-18 meses' },
-        { location: 'Oia/Oliverinha do Bairro', pricePerM2: '€680/m²', availability: 'Crítico', waitTime: '8-12 meses' },
+        { location: 'Oia / Oliveira do Bairro', pricePerM2: '€680/m²', availability: 'Crítico', waitTime: '8-12 meses' },
         { location: 'Amoreira da Gândara', pricePerM2: '€511/m²', availability: '✓ Disponível', waitTime: 'Imediato', highlight: true }
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
-        >
+        <div className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20">
             <div className="max-w-6xl w-full">
                 <div className="space-y-6 md:space-y-8">
                     <div className="text-left">
-                        <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-green-50 border border-green-200 rounded-full text-xs md:text-sm font-semibold text-green-700 mb-4 md:mb-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-green-50 border border-green-200 rounded-full text-xs md:text-sm font-semibold text-green-700 mb-4 md:mb-6"
+                        >
                             ✅ A Alternativa Inteligente
-                        </div>
+                        </motion.div>
 
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] mb-4 md:mb-6 leading-tight">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] mb-4 md:mb-6 leading-tight"
+                        >
                             Quer Aveiro?<br />
                             <span className="text-green-600">Damos-lhe Algo Melhor.</span>
-                        </h1>
+                        </motion.h1>
 
-                        <p className="text-base md:text-xl text-gray-700 leading-relaxed mb-4">
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.14 }}
+                            className="text-base md:text-xl text-gray-700 leading-relaxed mb-4"
+                        >
                             <strong className="text-[#003366]">Amoreira da Gândara</strong> está a <strong>15 minutos de Aveiro</strong>.
                             Dá-lhe acesso ao mesmo corredor logístico, às mesmas empresas, à mesma procura...
                             mas poupa-lhe <strong className="text-green-600">€895.000</strong>.
-                        </p>
+                        </motion.p>
 
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 rounded-lg p-4 md:p-6 mb-4 md:mb-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+                            className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 rounded-lg p-4 md:p-6 mb-4 md:mb-6"
+                        >
                             <p className="text-base md:text-lg font-bold text-[#003366] mb-2 md:mb-3">
                                 🎯 Porque É Que Isto É MELHOR Que Aveiro Centro:
                             </p>
@@ -95,11 +109,16 @@ export default function Step2Solution({ onNext }: Step2Props) {
                                     <span><strong>Valorização futura garantida</strong> — nova ligação à A1 em construção</span>
                                 </li>
                             </ul>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Aerial Photo */}
-                    <div className="rounded-2xl overflow-hidden shadow-2xl">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.28 }}
+                        className="rounded-2xl overflow-hidden shadow-2xl"
+                    >
                         <Image
                             src="/industrial-zone.png"
                             alt="Vista aérea da Zona Industrial de Amoreira da Gândara"
@@ -108,24 +127,31 @@ export default function Step2Solution({ onNext }: Step2Props) {
                             className="w-full h-auto"
                             priority
                         />
-                        <div className="bg-white p-4 text-center">
+                        <div className="bg-white p-4 text-center border-t border-gray-100">
                             <p className="text-sm text-gray-600">
                                 <strong className="text-[#003366]">Vista aérea real</strong> da Zona Industrial de Amoreira da Gândara —
                                 infraestruturas modernas, amplo espaço, e acesso privilegiado.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Location Advantages */}
                     <div>
-                        <h3 className="text-2xl font-bold text-[#003366] mb-6 text-left">🚀 Vantagens Competitivas da Localização</h3>
+                        <motion.h3
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.32 }}
+                            className="text-2xl font-bold text-[#003366] mb-6 text-left"
+                        >
+                            🚀 Vantagens Competitivas da Localização
+                        </motion.h3>
                         <div className="grid md:grid-cols-3 gap-6">
                             {locationAdvantages.map((advantage, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.2 + index * 0.1 }}
+                                    transition={{ delay: 0.38 + index * 0.1, duration: 0.5, ease: 'easeOut' }}
                                     className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all text-left"
                                 >
                                     <div className="text-[#003366] mb-4">
@@ -147,8 +173,13 @@ export default function Step2Solution({ onNext }: Step2Props) {
                         </div>
                     </div>
 
-                    {/* Comparative Analysis - RESPONSIVE TABLE */}
-                    <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-xl">
+                    {/* Comparative Analysis */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
+                        className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-xl"
+                    >
                         <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6 text-left">📊 Análise Comparativa de Mercado</h3>
 
                         {/* Mobile: Cards */}
@@ -239,23 +270,27 @@ export default function Step2Solution({ onNext }: Step2Props) {
                                 Num pavilhão de 2.640m², isso representa uma poupança de <strong>€894.960</strong> — capital que pode reinvestir ou usar para melhorias.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
 
-                {/* CTA Button at the very end */}
-                <div className="mt-8 md:mt-12 text-center px-4">
+                {/* CTA Button */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
+                    className="mt-8 md:mt-12 text-center px-4"
+                >
                     <button
                         onClick={onNext}
-                        className="group relative w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3 overflow-hidden border border-white/10"
+                        className="group w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3"
                     >
-                        <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                         <span>Ver Quem Já Investiu Aqui</span>
-                        <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </button>
-                </div>
+                </motion.div>
             </div>
-        </motion.div>
+        </div>
     );
 }
