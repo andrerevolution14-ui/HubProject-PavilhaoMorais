@@ -31,7 +31,7 @@ export default function Step2Solution({ onNext }: Step2Props) {
 
     const comparativeData = [
         { location: 'Aveiro Centro', pricePerM2: '€850/m²', availability: 'Esgotado', waitTime: '12-18 meses' },
-        { location: 'Oia/Oliverinha do Bairro', pricePerM2: '€680/m²', availability: 'Crítico', waitTime: '8-12 meses' },
+        { location: 'Oia / Oliveira do Bairro', pricePerM2: '€680/m²', availability: 'Crítico', waitTime: '8-12 meses' },
         { location: 'Amoreira da Gândara', pricePerM2: '€511/m²', availability: '✓ Disponível', waitTime: 'Imediato', highlight: true }
     ];
 

@@ -103,7 +103,7 @@ export default function Step5Offer() {
                                 <div className="text-6xl mb-6">🎯</div>
                                 <h3 className="text-3xl font-black text-[#003366] mb-4">Validar Proposta?</h3>
                                 <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                                    Para validar os dados de rentabilidade ou agendar uma visita ao ativo, <strong className="text-[#003366]">fale diretamente comigo</strong>.
+                                    Para validar os dados de rentabilidade ou agendar uma visita ao ativo, <strong className="text-[#003366]">tire todas as suas dúvidas</strong>.
                                 </p>
                                 <div className="space-y-4">
                                     <button
@@ -200,7 +200,7 @@ export default function Step5Offer() {
                     >
                         <h2 className="text-3xl md:text-5xl font-black text-[#003366]">Interessado em Avaliar o Dossier Completo?</h2>
                         <p className="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto font-medium leading-relaxed">
-                            Agende uma call técnica ou uma visita ao ativo diretamente com o proprietário.
+                            Agende uma call técnica ou uma visita ao ativo para avançar com o processo.
                         </p>
 
                         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
