@@ -326,9 +326,9 @@ export default function Step5Offer() {
                             {/* 3 benefits */}
                             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
-                                    ['✓ Sem Intermediários', 'Negócio direto com o proprietário'],
-                                    ['✓ Escritura Imediata', 'Documentação pronta a assinar'],
-                                    ['✓ Válido via Portal', 'Exclusivo para contactos deste site'],
+                                    ['✓ Yield até 8%', 'ROI superior ao residencial'],
+                                    ['✓ Escritura Imediata', 'Documentação 100% pronta'],
+                                    ['✓ Arrendatário Garantido', 'Rede de operadores logísticos'],
                                 ].map(([title, desc]) => (
                                     <div
                                         key={title}

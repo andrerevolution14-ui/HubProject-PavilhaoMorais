@@ -118,7 +118,7 @@ export default function Step4Asset({ onNext }: Step4Props) {
                         <span className="text-lg shrink-0">📸</span>
                         <p className="text-sm text-center font-medium text-white">
                             Vista interior real do pavilhão —{' '}
-                            <strong className="text-white">2.640m² de área útil</strong>, pé-direito alto, iluminação natural, pronto a operar
+                            <strong className="text-white">2.530m² de área útil</strong>, pé-direito alto, iluminação natural, pronto a operar
                         </p>
                     </div>
                 </motion.div>

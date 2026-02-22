@@ -41,57 +41,95 @@ export default function Home() {
     <main className="relative bg-[#fcfcfd] min-h-screen">
       <LayoutGroup>
         {/* Header with Progress Bar */}
-        <header className="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm">
-          <div className="max-w-6xl mx-auto px-6 py-4 md:py-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-4">
+        <header className="fixed top-0 left-0 right-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-4">
+
+            {/* Top row: back button + step label + step badge */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
                 {currentStep > 1 && (
                   <motion.button
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     onClick={prevStep}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+                    className="p-1.5 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
                   >
                     <svg className="w-5 h-5 text-[#003366]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
                     </svg>
                   </motion.button>
                 )}
-                <span className="text-sm font-black text-[#003366] tracking-tighter">
-                  ANÁLISE DE INVESTIMENTO — {currentStep}/5
+                <span className="text-xs md:text-sm font-black text-[#003366] tracking-tight">
+                  ANÁLISE — {currentStep}/{totalSteps}
                 </span>
               </div>
               <motion.div
                 key={currentStep}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-blue-600 bg-blue-50 px-3 py-1 rounded-full"
+                className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100"
               >
                 {stepNames[currentStep]}
               </motion.div>
             </div>
 
-            {/* HIGH VISIBILITY PROGRESS BAR */}
-            <div className="h-2.5 md:h-3.5 bg-gray-100 rounded-full overflow-hidden relative border border-gray-200 shadow-inner">
+            {/* Progress bar with fill */}
+            <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden mb-3 border border-gray-200">
               <motion.div
-                layoutId="progress-bar"
-                className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#003366] via-[#0055aa] to-[#003366] bg-[length:200%_100%] z-10"
-                style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-                initial={false}
-                transition={{ type: "spring", stiffness: 35, damping: 10 }}
-                animate={{ backgroundPosition: ['0% 0%', '200% 0%'] }}
+                className="absolute inset-y-0 left-0 rounded-full"
+                style={{ background: 'linear-gradient(90deg, #003366, #0055aa)' }}
+                initial={{ width: `${((currentStep - 1) / totalSteps) * 100}%` }}
+                animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
+              {/* Shine sweep */}
               <motion.div
-                className="absolute inset-x-0 inset-y-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-20"
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-y-0 w-16 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                animate={{ x: ['-4rem', '110vw'] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
               />
             </div>
+
+            {/* Step dots */}
+            <div className="flex items-center justify-between px-0.5">
+              {Array.from({ length: totalSteps }, (_, i) => {
+                const step = i + 1;
+                const done = step < currentStep;
+                const active = step === currentStep;
+                return (
+                  <div key={step} className="flex flex-col items-center gap-1">
+                    <motion.div
+                      animate={{
+                        background: done ? '#003366' : active ? '#0055aa' : '#e5e7eb',
+                        scale: active ? 1.15 : 1,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center text-[9px] md:text-[10px] font-black"
+                      style={{ color: done || active ? '#ffffff' : '#9ca3af' }}
+                    >
+                      {done ? (
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : step}
+                    </motion.div>
+                    <span
+                      className="hidden md:block text-[8px] font-bold uppercase tracking-wide"
+                      style={{ color: active ? '#003366' : '#9ca3af' }}
+                    >
+                      {stepNames[step]}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
         </header>
 
+
         {/* Content Area */}
-        <div className="pt-28 md:pt-36">
+        <div className="pt-36 md:pt-44">
           <AnimatePresence
             mode="wait"
             onExitComplete={() => window.scrollTo({ top: 0, behavior: 'instant' })}
