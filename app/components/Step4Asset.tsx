@@ -11,165 +11,250 @@ export default function Step4Asset({ onNext }: Step4Props) {
     const technicalSpecs = [
         { label: 'Área Bruta', value: '2.640 m²', icon: '📐', detail: '2.530 m² úteis' },
         { label: 'Terreno Total', value: '4.272 m²', icon: '🏗️', detail: 'Amplo espaço exterior' },
-        { label: 'Energia (PT)', value: '200-300A', icon: '⚡', detail: 'PT dedicado (Expansível)' },
-        { label: 'Licenciamento', value: 'Classe B', icon: '📜', detail: 'Indústria Aprovada' }
+        { label: 'Ano Construção', value: '2006', icon: '📅', detail: 'Segunda mão / Bom estado' },
+        { label: 'Casas de Banho', value: '4 WC', icon: '🚻', detail: 'Distribuídos por pisos' }
     ];
 
     const floorDistribution = [
         {
-            floor: 'Rés-do-Chão (Operacional)',
+            floor: 'Rés-do-Chão',
             features: [
-                '2 pavilhões amplos conectados',
-                '2 balneários + Refeitório',
-                'Acesso a pesados facilitado',
-                'Pé-direito industrial padrão'
-            ],
-            icon: '🏭'
+                '2 amplos pavilhões conectados',
+                '2 balneários completos',
+                'Refeitório equipado',
+                'Movimentação de viaturas pesadas'
+            ]
         },
         {
-            floor: '1º Andar (Administrativo)',
+            floor: '1º Andar',
             features: [
-                'Escritórios equipados',
-                'Salas de reuniões e arquivo',
-                '2 casas de banho dedicadas',
-                'Luz natural em todo o piso'
-            ],
-            icon: '🏢'
+                '2 salas/escritórios',
+                'Espaço amplo para trabalho administrativo',
+                '2 casas de banho',
+                'Sala de arquivo'
+            ]
         }
     ];
 
-    const containerVariants: any = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-        }
-    };
-
-    const itemVariants: any = {
-        hidden: { opacity: 0, scale: 0.98, y: 20 },
-        visible: {
-            opacity: 1, scale: 1, y: 0,
-            transition: { duration: 0.5, ease: "easeOut" }
-        }
-    };
+    const keyHighlights = [
+        { icon: '✓', text: 'Licença para Indústria aprovada', color: 'green' },
+        { icon: '✓', text: 'Pronto a escriturar', color: 'green' },
+        { icon: '✓', text: 'Certificado energético: Propriedade isenta', color: 'blue' },
+        { icon: '✓', text: 'Construção sólida com boas áreas', color: 'blue' }
+    ];
 
     return (
-        <div className="min-h-screen bg-tech-grid flex items-center justify-center px-4 py-12 md:py-20">
-            <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="max-w-6xl w-full"
-            >
-                <div className="space-y-12">
-                    <div className="text-center max-w-4xl mx-auto">
-                        <motion.div variants={itemVariants} className="inline-block px-4 py-2 bg-white rounded-full text-xs md:text-sm font-black text-[#003366] shadow-md mb-8 ring-1 ring-gray-100">
-                            🔍 ANÁLISE TÉCNICA DO ATIVO
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="min-h-screen bg-tech-grid flex items-center justify-center px-4 py-12 md:py-20"
+        >
+            <div className="max-w-6xl w-full">
+                <div className="space-y-6 md:space-y-8">
+                    <div className="text-center">
+                        <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-white rounded-full text-xs md:text-sm font-medium text-[#003366] shadow-sm mb-4 md:mb-6">
+                            📋 Análise Técnica Completa
+                        </div>
+
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] mb-4 leading-tight">
+                            Pavilhão Industrial<br />N333-1, Amoreira da Gândara
+                        </h1>
+
+                        <p className="text-base md:text-xl text-gray-700 max-w-3xl mx-auto mb-6 md:mb-8">
+                            Um ativo industrial <strong>pronto a gerar rendimento</strong>, com licenciamento aprovado e infraestruturas de qualidade superior.
+                        </p>
+
+                        {/* ÚNICA SOLUÇÃO Banner */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.3, type: "spring" }}
+                            className="bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-2 border-orange-400 rounded-xl md:rounded-2xl p-4 md:p-8 max-w-4xl mx-auto mb-6 md:mb-8 shadow-xl"
+                        >
+                            <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 text-center">
+                                <span className="text-2xl md:text-4xl">🎯</span>
+                                <h2 className="text-lg md:text-3xl font-bold text-[#003366] uppercase">
+                                    A ÚNICA SOLUÇÃO DISPONÍVEL
+                                </h2>
+                                <span className="text-2xl md:text-4xl">🎯</span>
+                            </div>
+                            <p className="text-base md:text-lg text-gray-800 leading-relaxed mb-4">
+                                Este é <strong className="text-[#003366]">o último pavilhão industrial premium</strong> disponível em Amoreira da Gândara
+                                com <strong>licenciamento aprovado</strong> e <strong>pronto a escriturar</strong>.
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-left">
+                                <div className="bg-white/80 rounded-lg p-3 md:p-4 border border-orange-200">
+                                    <p className="text-sm font-semibold text-orange-700 mb-1">✓ Disponibilidade</p>
+                                    <p className="text-xs text-gray-700">Todos os outros lotes: <strong>RESERVADOS</strong></p>
+                                </div>
+                                <div className="bg-white/80 rounded-lg p-3 md:p-4 border border-orange-200">
+                                    <p className="text-sm font-semibold text-orange-700 mb-1">✓ Timing</p>
+                                    <p className="text-xs text-gray-700">Próxima oportunidade: <strong>12-18 meses</strong></p>
+                                </div>
+                                <div className="bg-white/80 rounded-lg p-3 md:p-4 border border-orange-200">
+                                    <p className="text-sm font-semibold text-orange-700 mb-1">✓ Preço</p>
+                                    <p className="text-xs text-gray-700">Futuras construções: <strong>+30-40% mais caras</strong></p>
+                                </div>
+                            </div>
+                            <div className="mt-4 md:mt-6 pt-4 border-t-2 border-orange-200">
+                                <p className="text-xs md:text-sm font-bold text-[#003366] text-center">
+                                    💎 Para completar este investimento da melhor forma, <span className="text-orange-600">esta é a sua única opção hoje</span>.
+                                </p>
+                            </div>
                         </motion.div>
-
-                        <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-black text-[#003366] mb-6 leading-tight">
-                            Pavilhão N333-1 <br />
-                            <span className="text-blue-600">Amoreira da Gândara.</span>
-                        </motion.h1>
-
-                        <motion.p variants={itemVariants} className="text-lg md:text-2xl text-gray-700 leading-relaxed font-medium">
-                            Um ativo industrial de <strong className="text-[#003366]">qualidade superior</strong>, pronto a operar imediatamente e focado em logística moderna.
-                        </motion.p>
                     </div>
 
-                    {/* Main Image with Reveal Effect */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl relative group"
-                    >
+                    {/* Real Warehouse Photos */}
+                    <div className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
                         <Image
                             src="/warehouse-interior.jpg"
-                            alt="Interior do Pavilhão Industrial"
+                            alt="Interior do Pavilhão Industrial N333-1"
                             width={1200}
                             height={800}
-                            className="w-full h-auto transform group-hover:scale-105 transition-transform duration-1000"
+                            className="w-full h-auto"
                             priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/80 via-transparent to-transparent opacity-60" />
-                        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
-                            <p className="text-xl md:text-3xl font-black mb-2 flex items-center gap-3">
-                                <span className="bg-yellow-400 text-[#003366] p-2 rounded-lg text-lg">📸</span>
-                                Vista Real do Pavilhão
-                            </p>
-                            <p className="text-sm md:text-lg opacity-90 font-bold tracking-wide">
-                                2.640m² de área útil • Segurança contra incêndios • Pronto a operar
+                        <div className="p-4 md:p-6 bg-gradient-to-r from-[#003366] to-[#004488] text-white">
+                            <p className="text-center font-semibold text-sm md:text-base leading-snug text-white">
+                                <span className="text-xl md:text-yellow-300">📸</span> Vista interior real do pavilhão —
+                                <strong className="text-white"> 2.640m² de área útil</strong>, pé-direito alto, iluminação natural, pronto a operar
                             </p>
                         </div>
-                    </motion.div>
+                    </div>
 
-                    {/* Technical Specs & Distribution */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {/* Specs Grid */}
-                        <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4 md:gap-6">
+                    {/* Premium Card */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 lg:p-12 shadow-2xl"
+                    >
+                        {/* Technical Grid */}
+                        <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6">🔍 Especificações Técnicas</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
                             {technicalSpecs.map((spec, index) => (
                                 <motion.div
                                     key={index}
-                                    whileHover={{ y: -5, borderColor: '#0055aa' }}
-                                    className="bg-white p-6 rounded-3xl shadow-xl border-2 border-transparent transition-all"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.3 + index * 0.1 }}
+                                    className="bg-[#F5F7FA] rounded-xl p-4 md:p-6 text-left hover:shadow-md transition-shadow"
                                 >
-                                    <span className="text-4xl block mb-4">{spec.icon}</span>
-                                    <p className="text-xs text-gray-400 font-black uppercase tracking-widest mb-1">{spec.label}</p>
-                                    <p className="text-xl md:text-2xl font-black text-[#003366]">{spec.value}</p>
-                                    <p className="text-[10px] md:text-xs text-gray-500 font-bold mt-1">{spec.detail}</p>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-
-                        {/* Distribution Cards */}
-                        <div className="space-y-6">
-                            {floorDistribution.map((floor, index) => (
-                                <motion.div
-                                    key={index}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="bg-[#003366] rounded-[2rem] p-8 text-white shadow-2xl relative overflow-hidden group"
-                                >
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-white/10 transition-colors" />
-                                    <h4 className="text-xl md:text-2xl font-black mb-6 flex items-center gap-4">
-                                        <span className="bg-white/10 p-3 rounded-2xl text-3xl">{floor.icon}</span>
-                                        {floor.floor}
-                                    </h4>
-                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        {floor.features.map((feature, idx) => (
-                                            <li key={idx} className="flex items-center gap-3 text-sm md:text-base font-bold text-blue-100">
-                                                <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
-                                                {feature}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    <div className="flex items-start gap-4">
+                                        <span className="text-3xl md:text-4xl">{spec.icon}</span>
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-xs md:text-sm text-gray-600 font-medium mb-0.5 md:mb-1">{spec.label}</p>
+                                            <p className="text-xl md:text-2xl font-bold text-[#003366] mb-0.5 md:mb-1">{spec.value}</p>
+                                            <p className="text-[10px] md:text-xs text-gray-500">{spec.detail}</p>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
 
-                    {/* Final Rational Banner */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="bg-yellow-400 rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center gap-8 border-4 border-[#003366]/5"
-                    >
-                        <div className="text-7xl md:text-8xl animate-bounce drop-shadow-lg">💡</div>
-                        <div className="text-left flex-1">
-                            <h4 className="text-2xl md:text-4xl font-black text-[#003366] mb-4">A Lógica do Investimento</h4>
-                            <p className="text-lg md:text-2xl text-[#003366] font-bold leading-relaxed opacity-90">
-                                A €511/m², este ativo está <span className="underline decoration-4 decoration-[#003366]/20">40% abaixo da média de Aveiro</span>.
-                                Com a futura ligação à A1, o potencial de valorização é de centenas de milhares de euros só pelo terreno e localização.
-                            </p>
+                        {/* Floor Distribution */}
+                        <div className="border-t-2 border-gray-100 pt-6 md:pt-8 mb-6 md:mb-8">
+                            <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6">🏢 Distribuição dos Espaços</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                {floorDistribution.map((floor, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 + index * 0.1 }}
+                                        className="bg-[#003366] bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-5 md:p-6 text-white shadow-lg overflow-hidden relative"
+                                    >
+                                        <div className="relative z-10 text-left">
+                                            <h4 className="text-lg md:text-xl font-black mb-3 md:mb-4 flex items-center gap-3">
+                                                <span className="text-2xl md:text-3xl bg-white/20 p-1.5 rounded-lg">{index === 0 ? '🏭' : '🏢'}</span>
+                                                <span className="tracking-tight">{floor.floor}</span>
+                                            </h4>
+                                            <ul className="space-y-2 md:space-y-3">
+                                                {floor.features.map((feature, idx) => (
+                                                    <li key={idx} className="flex items-start gap-3 text-sm md:text-base leading-snug">
+                                                        <span className="text-yellow-400 mt-1 flex-shrink-0 font-bold">▶</span>
+                                                        <span className="font-medium text-white/95">{feature}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        {/* Subtle pattern */}
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 -mr-16 -mt-16 rounded-full blur-2xl pointer-events-none" />
+                                    </motion.div>
+                                ))}
+                            </div>
                         </div>
-                        <button
-                            onClick={onNext}
-                            className="w-full md:w-auto bg-[#003366] text-white px-12 py-6 rounded-[1.5rem] font-black text-xl md:text-2xl shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+
+                        {/* Key Highlights */}
+                        <div className="border-t-2 border-gray-100 pt-6 md:pt-8">
+                            <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6 text-left">⭐ Destaques do Imóvel</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-left">
+                                {keyHighlights.map((highlight, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 0.7 + index * 0.05 }}
+                                        className={`flex items-center gap-3 p-4 rounded-lg border-2 shadow-sm ${highlight.color === 'green'
+                                            ? 'bg-green-50 border-green-200'
+                                            : 'bg-blue-50 border-blue-200'
+                                            }`}
+                                    >
+                                        <span className={`text-xl md:text-2xl flex-shrink-0 ${highlight.color === 'green' ? 'text-green-600' : 'text-blue-600'
+                                            }`}>
+                                            {highlight.icon}
+                                        </span>
+                                        <p className={`font-bold text-sm md:text-base leading-tight ${highlight.color === 'green' ? 'text-green-900' : 'text-blue-900'
+                                            }`}>
+                                            {highlight.text}
+                                        </p>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Investment Insight */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.9 }}
+                            className="mt-6 md:mt-8 bg-[#FFF8E1] border-2 border-yellow-400 rounded-xl p-5 md:p-8 shadow-lg text-left"
                         >
-                            Ver Proposta Financeira →
-                        </button>
+                            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-6">
+                                <div className="text-4xl md:text-5xl bg-yellow-400 p-3 rounded-2xl shadow-inner flex-shrink-0 animate-pulse">
+                                    💡
+                                </div>
+                                <div>
+                                    <h4 className="font-black text-[#003366] text-lg md:text-2xl mb-2 md:mb-3">Porque é que este pavilhão vale €1.35M?</h4>
+                                    <p className="text-sm md:text-lg text-gray-800 leading-relaxed font-medium">
+                                        A <strong className="text-[#003366] bg-yellow-200 px-1 rounded">€511/m²</strong>, está <strong>40% abaixo</strong> do preço médio de Aveiro.
+                                        Com <strong>2.640m² de área bruta</strong> e <strong>4.272m² de terreno</strong>, tem capacidade para gerar
+                                        <strong className="text-green-700"> €7.000-9.000/mês</strong> em arrendamento —
+                                        um <strong>yield bruto de 6.2-8.0%</strong>. A futura ligação à A1 pode valorizar o imóvel em
+                                        <strong className="text-[#003366]"> +€400-500k</strong> nos próximos anos.
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
                     </motion.div>
                 </div>
-            </motion.div>
-        </div>
+
+                {/* CTA Button at the very end */}
+                <div className="mt-8 md:mt-12 text-center px-4">
+                    <button
+                        onClick={onNext}
+                        className="group relative w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3 overflow-hidden border border-white/10"
+                    >
+                        <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                        <span>Ver Condições Financeiras e ROI</span>
+                        <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </motion.div>
     );
 }
