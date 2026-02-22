@@ -31,7 +31,7 @@ export default function Step5Offer({ onNext }: Step5Props) {
     }, [hasTriggered]);
 
     // IMPORTANTE: Substituir com o número de WhatsApp real
-    const investorWhatsAppLink = "https://wa.me/351XXXXXXXXX?text=Olá,%20sou%20investidor%20e%20gostaria%20de%20validar%20o%20yield%20e%20agendar%20visita%20ao%20pavilhão%20em%20Amoreira%20da%20Gândara.";
+    const investorWhatsAppLink = "https://wa.link/lkepbc";
     const ownerWhatsAppLink = "https://wa.me/351XXXXXXXXX?text=Olá,%20sou%20proprietário/empresa%20e%20gostaria%20de%20receber%20a%20planta%20técnica%20do%20pavilhão%20N333-1.";
 
     const financialBreakdown = [

@@ -11,7 +11,7 @@ export default function Step4Asset({ onNext }: Step4Props) {
     const technicalSpecs = [
         { label: 'Área Bruta', value: '2.640 m²', icon: '📐', detail: '2.530 m² úteis' },
         { label: 'Terreno Total', value: '4.272 m²', icon: '🏗️', detail: 'Amplo espaço exterior' },
-        { label: 'Ano Construção', value: '2006', icon: '📅', detail: 'Segunda mão / Bom estado' },
+        { label: 'Energia (PT)', value: '200-300A', icon: '⚡', detail: 'Transformador dedicado (200A com exp. a 300A)' },
         { label: 'Casas de Banho', value: '4 WC', icon: '🚻', detail: 'Distribuídos por pisos' }
     ];
 
@@ -37,9 +37,9 @@ export default function Step4Asset({ onNext }: Step4Props) {
     ];
 
     const keyHighlights = [
-        { icon: '✓', text: 'Licença para Indústria aprovada', color: 'green' },
+        { icon: '✓', text: 'Licença para Indústria Classe B aprovada', color: 'green' },
+        { icon: '🔥', text: 'Segurança contra incêndios implementada', color: 'green' },
         { icon: '✓', text: 'Pronto a escriturar', color: 'green' },
-        { icon: '✓', text: 'Certificado energético: Propriedade isenta', color: 'blue' },
         { icon: '✓', text: 'Construção sólida com boas áreas', color: 'blue' }
     ];
 
