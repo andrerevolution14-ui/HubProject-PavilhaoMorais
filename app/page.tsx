@@ -21,17 +21,17 @@ export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
 
-  // Disparar ViewContent sempre que o passo muda
+  // Disparar ViewContent (Pixel + CAPI) sempre que o passo muda
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'ViewContent', {
+    import('./utils/fb-events').then(({ trackMetaEvent }) => {
+      trackMetaEvent('ViewContent', {
         content_name: stepNames[currentStep],
         content_category: 'Funnel Step',
         content_ids: [`step_${currentStep}`],
         value: currentStep === 5 ? 1350000 : 0,
         currency: 'EUR',
       });
-    }
+    });
   }, [currentStep]);
 
   const nextStep = () => {

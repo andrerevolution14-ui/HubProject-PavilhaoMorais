@@ -116,14 +116,14 @@ export default function Step5Offer({ onNext }: Step5Props) {
                                         <div className="space-y-3">
                                             <button
                                                 onClick={() => {
-                                                    if (typeof window !== 'undefined' && window.fbq) {
-                                                        window.fbq('track', 'Contact', {
+                                                    import('../utils/fb-events').then(({ trackMetaEvent }) => {
+                                                        trackMetaEvent('Contact', {
                                                             content_name: 'Pavilhão N333-1 Amoreira da Gândara',
                                                             content_category: 'Industrial Real Estate',
                                                             value: 1350000,
                                                             currency: 'EUR'
                                                         });
-                                                    }
+                                                    });
                                                     window.open(investorWhatsAppLink, '_blank', 'noopener,noreferrer');
                                                 }}
                                                 className="block w-full py-4 text-white font-bold text-lg rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl cursor-pointer"
@@ -341,15 +341,15 @@ export default function Step5Offer({ onNext }: Step5Props) {
                         {/* Single CTA — acção máxima: Contact */}
                         <motion.button
                             onClick={() => {
-                                // 🎯 Evento de conversão máxima — Enviar Mensagem
-                                if (typeof window !== 'undefined' && window.fbq) {
-                                    window.fbq('track', 'Contact', {
+                                // 🎯 Evento de conversão máxima — Enviar Mensagem (Pixel + CAPI)
+                                import('../utils/fb-events').then(({ trackMetaEvent }) => {
+                                    trackMetaEvent('Contact', {
                                         content_name: 'Pavilhão N333-1 Amoreira da Gândara',
                                         content_category: 'Industrial Real Estate',
                                         value: 1350000,
                                         currency: 'EUR'
                                     });
-                                }
+                                });
                                 window.open(investorWhatsAppLink, '_blank', 'noopener,noreferrer');
                             }}
                             initial={{ opacity: 0, y: 10 }}
