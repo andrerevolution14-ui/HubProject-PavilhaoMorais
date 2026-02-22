@@ -116,10 +116,10 @@ export default function Step4Asset({ onNext }: Step4Props) {
                             className="w-full h-auto"
                             priority
                         />
-                        <div className="p-4 md:p-6 bg-gradient-to-r from-[#003366] to-[#004488] text-white">
-                            <p className="text-center font-semibold text-sm md:text-base leading-snug text-white">
-                                <span className="text-xl md:text-yellow-300">📸</span> Vista interior real do pavilhão —
-                                <strong className="text-white"> 2.640m² de área útil</strong>, pé-direito alto, iluminação natural, pronto a operar
+                        <div className="p-4 md:p-6" style={{ background: 'linear-gradient(to right, #003366, #004488)' }}>
+                            <p className="text-center font-semibold text-sm md:text-base leading-snug" style={{ color: '#ffffff' }}>
+                                <span style={{ color: '#fbbf24' }}>📸</span> Vista interior real do pavilhão —
+                                <strong style={{ color: '#ffffff' }}> 2.640m² de área útil</strong>, pé-direito alto, iluminação natural, pronto a operar
                             </p>
                         </div>
                     </div>
@@ -245,11 +245,11 @@ export default function Step4Asset({ onNext }: Step4Props) {
                 <div className="mt-8 md:mt-12 text-center px-4">
                     <button
                         onClick={onNext}
-                        className="group relative w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3 overflow-hidden border border-white/10"
+                        className="group w-full md:w-auto px-8 md:px-12 py-5 md:py-6 text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 inline-flex items-center justify-center gap-3"
+                        style={{ background: 'linear-gradient(135deg, #003366 0%, #005599 100%)', boxShadow: '0 8px 32px rgba(0,51,102,0.4)' }}
                     >
-                        <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                         <span>Ver Condições Financeiras e ROI</span>
-                        <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </button>
