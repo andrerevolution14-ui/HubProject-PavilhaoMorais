@@ -77,9 +77,11 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full bg-[#F5F7FA] rounded-full h-1.5 md:h-2 overflow-hidden shadow-inner">
-            <div
-              className="bg-gradient-to-r from-[#003366] to-[#005599] h-full transition-all duration-700 ease-in-out"
-              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+            <motion.div
+              className="bg-gradient-to-r from-[#003366] to-[#005599] h-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
+              transition={{ duration: 0.8, ease: "circOut" }}
             />
           </div>
         </div>
@@ -96,10 +98,10 @@ export default function Home() {
           {currentStep === 1 && (
             <motion.div
               key="step1"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <Step1MarketProblem onNext={nextStep} />
             </motion.div>
@@ -107,10 +109,10 @@ export default function Home() {
           {currentStep === 2 && (
             <motion.div
               key="step2"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <Step2Solution onNext={nextStep} />
             </motion.div>
@@ -118,10 +120,10 @@ export default function Home() {
           {currentStep === 3 && (
             <motion.div
               key="step3"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <Step3SocialProof onNext={nextStep} />
             </motion.div>
@@ -129,10 +131,10 @@ export default function Home() {
           {currentStep === 4 && (
             <motion.div
               key="step4"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <Step4Asset onNext={nextStep} />
             </motion.div>
@@ -140,10 +142,10 @@ export default function Home() {
           {currentStep === 5 && (
             <motion.div
               key="step5"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <Step5Offer />
             </motion.div>
