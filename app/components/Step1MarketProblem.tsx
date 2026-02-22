@@ -13,150 +13,122 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
     { metric: 'Valorização 2024-2026', value: '+127%', trend: 'Explosivo' }
   ];
 
+  const containerVariants: any = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+    }
+  };
+
+  const itemVariants: any = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
-    <div
-      className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
-    >
-      <div className="max-w-6xl w-full">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+    <div className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="max-w-6xl w-full"
+      >
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start text-left">
           {/* Left: Direct Message to Investor */}
-          <div className="space-y-4 md:space-y-6">
-            <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-red-50 border border-red-200 rounded-full text-xs md:text-sm font-semibold text-red-700">
-              🚨 Para Investidores em Aveiro Centro
-            </div>
+          <div className="space-y-4 md:space-y-6 text-left">
+            <motion.div variants={itemVariants} className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-red-50 text-red-600 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider animate-pulse">
+              ⚠️ Oportunidade em Fecho
+            </motion.div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] leading-tight">
-              Quer Investir em Aveiro Centro?<br />
-              <span className="text-red-600">Tem Um Problema.</span>
-            </h1>
+            <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-[#003366] leading-tight text-left">
+              Aveiro Centro <br />
+              <span className="text-red-600">está esgotado.</span>
+            </motion.h1>
 
-            <div className="bg-[#F5F7FA] rounded-xl p-4 md:p-6 border-l-4 border-red-600">
-              <p className="text-base md:text-lg font-semibold text-[#003366] mb-2">
-                A Verdade que Ninguém Lhe Diz:
+            <motion.div variants={itemVariants} className="space-y-4 text-base md:text-xl text-gray-700 leading-relaxed font-medium text-left">
+              <p>
+                A procura por pavilhões industriais premium em Aveiro atingiu o ponto de rutura.
+                Investidores que esperaram "pela oportunidade perfeita" no centro estão agora <strong className="text-red-500">fora do mercado</strong>.
               </p>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                <strong>Aveiro Centro está esgotado.</strong> Não há espaço industrial disponível. Zero. E quando aparecer algo (daqui a 12-18 meses),
-                vai pagar <strong className="text-red-600">+30-40% mais</strong> do que pagaria hoje... noutro sítio.
+              <p className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-xl italic shadow-sm">
+                "Quem não se posicionou a 15km do centro em 2023, hoje paga o dobro ou simplesmente não encontra nada."
               </p>
-            </div>
+            </motion.div>
 
-            <div className="space-y-3 md:space-y-4">
-              <h3 className="text-lg md:text-xl font-bold text-[#003366]">📊 Os Números Que Precisa de Ver:</h3>
-
+            {/* Market Stats Grid */}
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 pt-4">
               {marketData.map((data, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="flex items-center justify-between bg-white border-2 border-[#F5F7FA] rounded-lg p-3 md:p-4 hover:border-[#003366] transition-colors gap-2"
+                  whileHover={{ y: -5 }}
+                  className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 transition-all hover:border-[#003366]/20"
                 >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs md:text-sm text-gray-600 truncate">{data.metric}</p>
-                    <p className="text-xl md:text-2xl font-bold text-[#003366]">{data.value}</p>
-                  </div>
-                  <span className="px-2 md:px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full whitespace-nowrap">
+                  <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase mb-1">{data.metric}</p>
+                  <p className="text-xl md:text-2xl font-black text-[#003366]">{data.value}</p>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${data.trend === 'Crítico' ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'
+                    }`}>
                     {data.trend}
                   </span>
                 </motion.div>
               ))}
-            </div>
-
-            <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4 md:p-5">
-              <p className="text-sm font-bold text-yellow-900 mb-2">⚡ O Que Isto Significa Para Si:</p>
-              <ul className="space-y-2 text-xs md:text-sm text-yellow-800">
-                <li className="flex items-start gap-2">
-                  <span className="text-yellow-600 mt-0.5 flex-shrink-0">▸</span>
-                  <span>Se quer Aveiro, <strong>já perdeu</strong> — está tudo reservado</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-yellow-600 mt-0.5 flex-shrink-0">▸</span>
-                  <span>Se esperar, vai pagar <strong>€200-300/m² a mais</strong> daqui a 1 ano</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-yellow-600 mt-0.5 flex-shrink-0">▸</span>
-                  <span>Mas há <strong>1 alternativa</strong> que 99% dos investidores ainda não descobriu</span>
-                </li>
-              </ul>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Right: Visual Data */}
+          {/* Right: Storytelling & Visual Proof */}
           <div className="space-y-6 md:space-y-8">
-            <div className="bg-[#002244] bg-premium-blue rounded-2xl md:rounded-3xl p-6 md:p-10 text-white shadow-2xl relative overflow-hidden border border-white/10">
-              <div className="relative z-10">
-                <h3 className="text-xl md:text-3xl font-black mb-4 md:mb-6 tracking-tight flex items-center gap-3">
-                  <span className="text-2xl md:text-4xl">💡</span>
-                  <span>Porque É Que Isto Aconteceu:</span>
-                </h3>
-                <div className="space-y-4 md:space-y-5 text-sm md:text-lg">
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>O e-commerce <strong>duplicou</strong> a procura por armazéns desde 2020</span>
-                  </p>
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>Grandes operadores pagam <strong>yields de 7-9%</strong> — muito acima do residencial</span>
-                  </p>
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>Aveiro tornou-se <strong>o hub logístico</strong> da Região Centro</span>
-                  </p>
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>Resultado: <strong>procura 5x superior à oferta</strong></span>
-                  </p>
-                </div>
-              </div>
-            </div>
+            <motion.div variants={itemVariants} className="bg-[#003366] bg-gradient-to-br from-[#003366] to-[#004488] p-6 md:p-10 rounded-[2rem] text-white shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-white/10 transition-colors" />
 
-            <div className="bg-white border-2 border-[#003366] rounded-xl p-4 md:p-6">
-              <p className="text-xs text-gray-500 mb-2">CASO REAL — INVESTIDOR COMO VOCÊ</p>
-              <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
-                <strong className="text-[#003366]">João, empresário de Coimbra</strong>, queria Aveiro Centro.
-                Esperou 8 meses por uma oportunidade. Quando apareceu, o preço tinha subido <strong className="text-red-600">€280k</strong>.
+              <h3 className="text-xl md:text-2xl font-black mb-6 flex items-center gap-3">
+                <span className="bg-white/20 p-2 rounded-lg">📖</span>
+                O Caso Real: João <br className="hidden sm:block" />
+                (Investidor de Coimbra)
+              </h3>
+
+              <p className="text-base md:text-lg opacity-90 leading-relaxed mb-6 font-medium">
+                <strong className="text-white">João, empresário de Coimbra</strong>, queria Aveiro Centro.
+                Esperou 8 meses por uma oportunidade. Quando apareceu, o preço tinha subido <strong className="text-red-400">€280k</strong>.
                 Decidiu investir numa <strong>alternativa estratégica</strong> a 15km de Aveiro.
-                Poupou €895k, arrendou por €9.000/mês, e tem <strong className="text-green-600">yield de 8%</strong>.
+                Poupou €895k, arrendou por €9.000/mês, e tem <strong className="text-green-400">yield de 8%</strong>.
               </p>
-            </div>
 
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 rounded-xl p-4 md:p-6">
-              <h4 className="font-bold text-[#003366] mb-2 md:mb-3 flex items-center gap-2 text-base md:text-lg">
-                <span className="text-xl md:text-2xl">📈</span>
-                Dados de Mercado 2024
-              </h4>
-              <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-700">
-                <p className="flex justify-between gap-2">
-                  <span>Taxa de Ocupação Aveiro:</span>
-                  <strong className="text-red-600">98.7%</strong>
-                </p>
-                <p className="flex justify-between gap-2">
-                  <span>Tempo Médio de Venda:</span>
-                  <strong className="text-[#003366]">&lt; 45 dias</strong>
-                </p>
-                <p className="flex justify-between gap-2">
-                  <span>Valorização 2024-2026:</span>
-                  <strong className="text-green-600">+127%</strong>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#003366] bg-gray-200 overflow-hidden shadow-xl" />
+                  ))}
+                </div>
+                <p className="text-xs md:text-sm font-bold text-blue-200">
+                  +14 investidores já garantiram <br /> as últimas unidades na zona.
                 </p>
               </div>
-            </div>
+            </motion.div>
+
+            {/* CTA para o próximo passo */}
+            <motion.button
+              variants={itemVariants}
+              onClick={onNext}
+              whileHover={{ scale: 1.03, boxShadow: "0 20px 40px rgba(0,51,102,0.25)" }}
+              whileTap={{ scale: 0.98 }}
+              className="group w-full bg-[#003366] bg-gradient-to-r from-[#003366] to-[#0055aa] text-white p-6 md:p-7 rounded-2xl shadow-xl flex items-center justify-center gap-4 transition-all overflow-hidden relative cursor-pointer"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="text-left flex-1">
+                <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] opacity-70 mb-1 leading-tight">Próxima Etapa</p>
+                <p className="text-lg md:text-2xl font-black leading-tight">Descobrir a Alternativa Estratégica</p>
+              </div>
+              <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </motion.button>
           </div>
         </div>
-
-        {/* CTA Button at the very end */}
-        <div className="mt-8 md:mt-12 text-center px-4">
-          <button
-            onClick={onNext}
-            className="group w-full md:w-auto px-8 md:px-12 py-5 md:py-6 text-white font-black text-base md:text-xl rounded-2xl hover:scale-105 active:scale-95 transition-all duration-200 inline-flex items-center justify-center gap-3"
-            style={{ background: 'linear-gradient(135deg, #003366 0%, #005599 100%)', boxShadow: '0 8px 32px rgba(0,51,102,0.4)' }}
-          >
-            <span className="text-sm md:text-base">Mostrar-me a Alternativa Estratégica</span>
-            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </button>
-        </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

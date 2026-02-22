@@ -3,24 +3,14 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-interface Step5Props {
-    onNext?: () => void;
-}
-
-export default function Step5Offer({ onNext }: Step5Props) {
+export default function Step5Offer() {
     const [showPopup, setShowPopup] = useState(false);
     const [hasTriggered, setHasTriggered] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (hasTriggered) return;
-
-            // Check if user is near the bottom (within 100px)
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.scrollY || window.pageYOffset;
-
-            if (windowHeight + scrollTop >= documentHeight - 50) {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercent > 50 && !hasTriggered) {
                 setShowPopup(true);
                 setHasTriggered(true);
             }
@@ -30,346 +20,205 @@ export default function Step5Offer({ onNext }: Step5Props) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [hasTriggered]);
 
-    // IMPORTANTE: Substituir com o número de WhatsApp real
     const investorWhatsAppLink = "https://wa.link/lkepbc";
-    const ownerWhatsAppLink = "https://wa.me/351XXXXXXXXX?text=Olá,%20sou%20proprietário/empresa%20e%20gostaria%20de%20receber%20a%20planta%20técnica%20do%20pavilhão%20N333-1.";
 
     const financialBreakdown = [
         { label: 'Preço de Aquisição', value: '€1.350.000', type: 'primary' },
         { label: 'Preço por m²', value: '€511/m²', type: 'highlight', detail: '40% abaixo de Aveiro Centro' },
-        { label: 'Área Bruta', value: '2.640 m²', type: 'normal' },
-        { label: 'Terreno Total', value: '4.272 m²', type: 'normal' }
+        { label: 'Renda Estimada (Mês)', value: '€7.000 - €9.000', type: 'normal' },
+        { label: 'Yield Bruta Alvo', value: '6.2% - 8.0%', type: 'normal' }
     ];
 
-    const roiScenarios = [
+    const targetScenarios = [
         {
-            scenario: 'Arrendamento Conservador',
+            scenario: 'Cenário Conservador',
             monthlyRent: '€7.000',
-            annualIncome: '€84.000',
             grossYield: '6.2%',
             netYield: '4.8%',
-            description: 'Empresa de logística local'
+            description: 'Arrendamento a empresa local'
         },
         {
-            scenario: 'Arrendamento Otimista',
+            scenario: 'Cenário Recomendado',
             monthlyRent: '€9.000',
-            annualIncome: '€108.000',
             grossYield: '8.0%',
             netYield: '6.2%',
-            description: 'Operador logístico nacional',
+            description: 'Operador logístico nacional/internacional',
             recommended: true
         }
     ];
 
+    const containerVariants: any = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+        }
+    };
+
+    const itemVariants: any = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1, y: 0,
+            transition: { duration: 0.5, ease: "easeOut" }
+        }
+    };
+
+    const handleWhatsAppClick = () => {
+        import('../utils/fb-events').then(({ trackMetaEvent }) => {
+            trackMetaEvent('Contact', {
+                content_name: 'Pavilhão N333-1 Amoreira da Gândara',
+                content_category: 'Industrial Real Estate',
+                value: 1350000,
+                currency: 'EUR'
+            });
+        });
+        window.open(investorWhatsAppLink, '_blank', 'noopener,noreferrer');
+    };
+
     return (
         <div className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20">
-            <div className="max-w-5xl w-full">
-                {/* CENTERED MODAL POPUP */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="max-w-5xl w-full"
+            >
+                {/* MODAL POPUP (Sticky/Delayed) */}
                 <AnimatePresence>
                     {showPopup && (
                         <>
-                            {/* Backdrop */}
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 onClick={() => setShowPopup(false)}
-                                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110]"
+                                className="fixed inset-0 bg-[#003366]/60 backdrop-blur-md z-[110]"
                             />
-
-                            {/* Modal */}
                             <motion.div
-                                initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                                animate={{ scale: 1, opacity: 1, y: 0 }}
-                                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                                className="fixed inset-0 flex items-center justify-center z-[120] px-4 pointer-events-none"
+                                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                                className="fixed left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 top-1/2 -translate-y-1/2 md:w-full md:max-w-lg bg-white rounded-[2.5rem] shadow-2xl z-[120] p-8 text-center border-4 border-[#003366]/5"
                             >
-                                <div className="bg-white text-[#003366] p-8 md:p-10 rounded-3xl shadow-2xl max-w-lg w-full relative pointer-events-auto border border-gray-100">
+                                <div className="text-6xl mb-6">🎯</div>
+                                <h3 className="text-3xl font-black text-[#003366] mb-4">Validar Proposta?</h3>
+                                <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                                    Para validar os dados de rentabilidade ou agendar uma visita ao ativo, <strong className="text-[#003366]">fale diretamente comigo</strong>.
+                                </p>
+                                <div className="space-y-4">
+                                    <button
+                                        onClick={handleWhatsAppClick}
+                                        className="w-full py-6 text-white font-black text-xl rounded-2xl shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-3"
+                                        style={{ background: 'linear-gradient(135deg, #1a6b38 0%, #25a244 100%)' }}
+                                    >
+                                        <span>WhatsApp Direto</span>
+                                        <span className="text-2xl">⚡</span>
+                                    </button>
                                     <button
                                         onClick={() => setShowPopup(false)}
-                                        className="absolute top-4 right-4 text-gray-400 hover:text-[#003366] transition-colors"
+                                        className="text-gray-400 font-bold hover:text-gray-600 transition-colors"
                                     >
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
+                                        Voltarei mais tarde
                                     </button>
-
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-[#F5F7FA] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
-                                            💬
-                                        </div>
-
-                                        <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight text-center">
-                                            Ficou com alguma dúvida?
-                                        </h3>
-
-                                        <p className="text-gray-600 text-lg mb-8 leading-relaxed text-center">
-                                            Para validar os dados de rentabilidade ou agendar uma visita ao ativo, <strong className="text-[#003366]">pode contactar-me</strong> diretamente através do WhatsApp.
-                                        </p>
-
-                                        <div className="space-y-3">
-                                            <button
-                                                onClick={() => {
-                                                    import('../utils/fb-events').then(({ trackMetaEvent }) => {
-                                                        trackMetaEvent('Contact', {
-                                                            content_name: 'Pavilhão N333-1 Amoreira da Gândara',
-                                                            content_category: 'Industrial Real Estate',
-                                                            value: 1350000,
-                                                            currency: 'EUR'
-                                                        });
-                                                    });
-                                                    window.open(investorWhatsAppLink, '_blank', 'noopener,noreferrer');
-                                                }}
-                                                className="block w-full py-4 text-white font-bold text-lg rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl cursor-pointer"
-                                                style={{ background: 'linear-gradient(135deg, #1a6b38 0%, #25a244 100%)' }}
-                                            >
-                                                Iniciar Conversa no WhatsApp
-                                            </button>
-                                            <button
-                                                onClick={() => setShowPopup(false)}
-                                                className="block w-full py-3 text-gray-400 font-medium hover:text-[#003366] transition-colors"
-                                            >
-                                                Continuar a ler a análise
-                                            </button>
-                                        </div>
-                                    </div>
                                 </div>
                             </motion.div>
                         </>
                     )}
                 </AnimatePresence>
 
-                <div className="text-center space-y-6 md:space-y-8">
-                    <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-yellow-100 to-orange-100 border border-yellow-300 rounded-full text-xs md:text-sm font-bold text-yellow-900">
-                        💰 Oportunidade Exclusiva — Off-Market
-                    </div>
-
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] leading-tight px-2">
-                        Análise Financeira Completa
-                    </h1>
-
-                    <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-                        Todos os números, transparentes. Todos os cenários, calculados. Tome a decisão mais informada da sua vida.
-                    </p>
-
-                    {/* Pricing Card */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-gradient-to-br from-[#F5F7FA] to-white rounded-xl md:rounded-2xl p-4 md:p-8 lg:p-12 shadow-2xl border-2 border-[#003366]/10 mx-2 md:mx-0"
-                    >
-                        {/* Price Comparison */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8 text-center md:text-left">
-                            <div className="px-2">
-                                <p className="text-gray-500 text-xs md:text-sm mb-1 md:mb-2 uppercase tracking-wide">Valor de Avaliação Bancária:</p>
-                                <p className="text-2xl md:text-3xl text-gray-400 line-through font-semibold mb-1 md:mb-2 text-center md:text-left">
-                                    1.400.000€
-                                </p>
-                                <p className="text-[10px] md:text-xs text-gray-500">Avaliação independente — Dezembro 2025</p>
-                            </div>
-
-                            <div className="text-center md:text-right px-2">
-                                <p className="text-[#003366] text-xs md:text-sm font-bold mb-1 md:mb-2 uppercase tracking-wide">Preço de Fecho Negociado:</p>
-                                <motion.p
-                                    initial={{ scale: 0.9 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ delay: 0.4, type: "spring" }}
-                                    className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] mb-2"
-                                >
-                                    1.350.000€
-                                </motion.p>
-                                <div className="inline-block bg-green-100 border border-green-300 rounded-lg px-3 md:px-4 py-1.5 md:py-2">
-                                    <p className="text-green-800 font-semibold text-[10px] md:text-xs">
-                                        💰 Poupança imediata: €50.000
-                                    </p>
-                                </div>
-                            </div>
+                <div className="space-y-12">
+                    <motion.div variants={itemVariants} className="text-center space-y-4">
+                        <div className="inline-block px-4 py-2 bg-green-50 text-green-700 rounded-full text-xs md:text-sm font-black uppercase tracking-widest shadow-sm">
+                            💎 Oportunidade de Investimento Industrial
                         </div>
-
-                        {/* Financial Breakdown */}
-                        <div className="bg-white rounded-xl p-4 md:p-6 mb-6 md:mb-8 border-2 border-gray-100 mx-2 md:mx-0">
-                            <h3 className="text-base md:text-lg font-bold text-[#003366] mb-3 md:mb-4">📊 Breakdown Financeiro</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                                {financialBreakdown.map((item, index) => (
-                                    <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
-                                        <div className="text-left">
-                                            <p className="text-xs md:text-sm text-gray-600">{item.label}</p>
-                                            {item.detail && <p className="text-[10px] md:text-xs text-green-600 font-semibold leading-tight">{item.detail}</p>}
-                                        </div>
-                                        <p className={`font-bold ml-2 text-right ${item.type === 'primary' ? 'text-lg md:text-2xl text-[#003366]' :
-                                            item.type === 'highlight' ? 'text-base md:text-xl text-green-600' :
-                                                'text-sm md:text-lg text-gray-700'
-                                            }`}>
-                                            {item.value}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* ROI Scenarios */}
-                        <div className="mb-6 md:mb-8 px-2">
-                            <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6">📈 Cenários de Rentabilidade (ROI)</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                                {roiScenarios.map((scenario, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.5 + index * 0.1 }}
-                                        className={`rounded-xl p-4 md:p-6 text-left ${scenario.recommended
-                                            ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300'
-                                            : 'bg-gray-50 border-2 border-gray-200'
-                                            }`}
-                                    >
-                                        {scenario.recommended && (
-                                            <span className="inline-block bg-green-600 text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-1 rounded-full mb-3">
-                                                ⭐ MAIS PROVÁVEL
-                                            </span>
-                                        )}
-                                        <h4 className="font-bold text-[#003366] text-sm md:text-base mb-3 md:mb-4">{scenario.scenario}</h4>
-                                        <div className="space-y-1.5 md:space-y-2 mb-4">
-                                            <div className="flex justify-between">
-                                                <span className="text-xs md:text-sm text-gray-600">Renda Mensal:</span>
-                                                <span className="text-xs md:text-sm font-bold text-[#003366]">{scenario.monthlyRent}</span>
-                                            </div>
-                                            <div className="flex justify-between">
-                                                <span className="text-xs md:text-sm text-gray-600">Receita Anual:</span>
-                                                <span className="text-xs md:text-sm font-bold text-[#003366]">{scenario.annualIncome}</span>
-                                            </div>
-                                            <div className="flex justify-between pt-2 border-t border-gray-200">
-                                                <span className="text-xs md:text-sm font-semibold text-gray-700">Yield Bruto:</span>
-                                                <span className="font-bold text-green-600 text-base md:text-lg">{scenario.grossYield}</span>
-                                            </div>
-                                            <div className="flex justify-between">
-                                                <span className="text-xs md:text-sm font-semibold text-gray-700">Yield Líquido:</span>
-                                                <span className="font-bold text-green-600 text-base md:text-lg">{scenario.netYield}</span>
-                                            </div>
-                                        </div>
-                                        <p className="text-[10px] md:text-xs text-gray-600 italic leading-snug">{scenario.description}</p>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Additional Value */}
-                        <div className="bg-blue-50 border-l-4 border-[#003366] rounded-lg p-4 md:p-6 mb-6 md:mb-8 mx-2 md:mx-0 text-left">
-                            <h4 className="font-bold text-[#003366] text-sm md:text-base mb-2 md:mb-3 flex items-center gap-2">
-                                <span className="text-xl md:text-2xl">🚀</span>
-                                Valorização Futura Projetada
-                            </h4>
-                            <p className="text-xs md:text-sm text-gray-700 leading-relaxed mb-3">
-                                Com a conclusão da <strong>ligação à A1</strong> (prevista para 2027-2028),
-                                pavilhões industriais em Amoreira da Gândara podem valorizar <strong>+35-45%</strong>.
-                            </p>
-                            <div className="bg-white rounded-lg p-3 md:p-4 border border-blue-200">
-                                <div className="flex flex-col sm:flex-row justify-between items-center gap-1">
-                                    <span className="text-xs md:text-sm font-semibold text-gray-700">Valor Estimado em 2028:</span>
-                                    <span className="text-lg md:text-2xl font-bold text-[#003366]">€1.82M - €1.96M</span>
-                                </div>
-                                <p className="text-[10px] md:text-xs text-green-600 font-semibold mt-1.5 md:mt-2 text-center sm:text-right">
-                                    Ganho de capital potencial: +€470k - €610k
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="h-px bg-gradient-to-r from-transparent via-[#003366]/20 to-transparent my-6 md:my-8" />
-
-                        {/* PROFESSIONAL DISCOUNT OFFER */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 }}
-                            className="bg-[#003366] bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-5 md:p-8 mb-6 shadow-2xl mx-2 md:mx-0 border-2 border-white/10"
-                        >
-                            <div className="text-center mb-6 md:mb-8 text-white">
-                                <div className="inline-block px-4 py-2 bg-yellow-400 rounded-full mb-4 shadow-md">
-                                    <p className="text-[#003366] text-xs md:text-sm font-black uppercase tracking-wider">
-                                        Oferta Exclusiva Limitada
-                                    </p>
-                                </div>
-                                <h3 className="text-2xl md:text-4xl font-black text-white mb-3 leading-tight tracking-tight">
-                                    Desconto Imediato de €50.000
-                                </h3>
-                                <p className="text-white/90 text-sm md:text-xl max-w-2xl mx-auto px-2 font-medium">
-                                    Beneficie de condições únicas ao contactar o proprietário diretamente através deste portal oficial.
-                                </p>
-                            </div>
-
-                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 md:p-8 mb-6 md:mb-8 border border-white/20">
-                                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 mb-6">
-                                    <div className="text-center md:text-right">
-                                        <p className="text-white/60 text-xs md:text-sm mb-1 uppercase font-bold tracking-widest">Preço de Mercado</p>
-                                        <p className="text-2xl md:text-4xl text-white/50 line-through font-bold">€1.350.000</p>
-                                    </div>
-                                    <div className="hidden md:block text-yellow-400 text-4xl animate-pulse">➔</div>
-                                    <div className="text-center md:text-left">
-                                        <p className="text-yellow-400 text-xs md:text-sm mb-1 font-black uppercase tracking-widest">Preço com Acordo Direto</p>
-                                        <p className="text-4xl md:text-6xl text-yellow-400 font-black drop-shadow-lg">€1.300.000</p>
-                                    </div>
-                                </div>
-                                <div className="text-center pt-5 md:pt-6 border-t border-white/20">
-                                    <p className="text-white font-black text-xl md:text-3xl">
-                                        POUPANÇA TOTAL: <span className="text-yellow-400">€50.000</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-xs md:text-base">
-                                <div className="bg-white/10 rounded-xl p-4 text-center border border-white/5">
-                                    <p className="text-yellow-400 font-black mb-1">✓ Sem Intermediários</p>
-                                    <p className="text-white/80 text-[10px] md:text-xs">Negócio direto com o proprietário</p>
-                                </div>
-                                <div className="bg-white/10 rounded-xl p-4 text-center border border-white/5">
-                                    <p className="text-yellow-400 font-black mb-1">✓ Escritura Imediata</p>
-                                    <p className="text-white/80 text-[10px] md:text-xs">Documentação pronta a assinar</p>
-                                </div>
-                                <div className="bg-white/10 rounded-xl p-4 text-center border border-white/5">
-                                    <p className="text-yellow-400 font-black mb-1">✓ Válido via Portal</p>
-                                    <p className="text-white/80 text-[10px] md:text-xs">Exclusivo para contactos deste site</p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Single CTA — acção máxima: Contact */}
-                        <motion.button
-                            onClick={() => {
-                                // 🎯 Evento de conversão máxima — Enviar Mensagem (Pixel + CAPI)
-                                import('../utils/fb-events').then(({ trackMetaEvent }) => {
-                                    trackMetaEvent('Contact', {
-                                        content_name: 'Pavilhão N333-1 Amoreira da Gândara',
-                                        content_category: 'Industrial Real Estate',
-                                        value: 1350000,
-                                        currency: 'EUR'
-                                    });
-                                });
-                                window.open(investorWhatsAppLink, '_blank', 'noopener,noreferrer');
-                            }}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.7 }}
-                            className="group w-full px-6 md:px-8 py-5 md:py-6 text-white font-bold text-base md:text-xl rounded-xl hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 md:gap-3 mx-2 md:mx-0 cursor-pointer"
-                            style={{ background: 'linear-gradient(135deg, #1a6b38 0%, #25a244 100%)', boxShadow: '0 8px 32px rgba(37,162,68,0.45)' }}
-                        >
-                            <svg className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                            </svg>
-                            <span>Falar com o Proprietário</span>
-                            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </motion.button>
+                        <h1 className="text-4xl md:text-7xl font-black text-[#003366] leading-tight text-center">
+                            Proposta <br />
+                            <span className="text-blue-600">Financeira.</span>
+                        </h1>
                     </motion.div>
 
-                    <p className="text-[10px] md:text-sm text-gray-500 mt-6 md:mt-8 flex items-center justify-center gap-2 px-4">
-                        <svg className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-center">Informação confidencial. Partilha restrita para investidores qualificados.</span>
-                    </p>
+                    {/* Financial Summary Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                        {financialBreakdown.map((item, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -8 }}
+                                className={`p-6 rounded-3xl border-2 flex flex-col justify-center text-center transition-all ${item.type === 'primary' ? 'bg-[#003366] text-white border-[#003366] shadow-xl' :
+                                    item.type === 'highlight' ? 'bg-yellow-400 text-[#003366] border-yellow-400 shadow-xl' :
+                                        'bg-white border-gray-100 text-[#003366] shadow-md'
+                                    }`}
+                            >
+                                <p className={`text-[10px] md:text-xs font-black uppercase tracking-widest mb-2 opacity-70`}>{item.label}</p>
+                                <p className="text-2xl md:text-3xl font-black mb-1">{item.value}</p>
+                                {item.detail && <p className="text-[10px] font-bold opacity-80">{item.detail}</p>}
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Scenarios Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 overflow-visible">
+                        {targetScenarios.map((target, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.02 }}
+                                className={`relative p-8 rounded-[2.5rem] shadow-2xl flex flex-col items-center text-center transition-all ${target.recommended ? 'bg-[#003366] text-white ring-4 ring-blue-500/20' : 'bg-white text-[#003366] border border-gray-100'
+                                    }`}
+                            >
+                                {target.recommended && (
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+                                        Recomendado
+                                    </div>
+                                )}
+                                <h4 className="text-xl font-black mb-8 opacity-70 uppercase tracking-widest">{target.scenario}</h4>
+                                <div className="space-y-4 mb-10">
+                                    <div className="flex flex-col">
+                                        <span className="text-sm font-bold opacity-60">Renda Mensal</span>
+                                        <span className="text-4xl md:text-6xl font-black">{target.monthlyRent}</span>
+                                    </div>
+                                    <div className="flex justify-center gap-10 mt-6">
+                                        <div className="flex flex-col">
+                                            <span className="text-xs font-bold opacity-60 uppercase">Yield Bruta</span>
+                                            <span className="text-2xl font-black text-green-400">{target.grossYield}</span>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-xs font-bold opacity-60 uppercase">Yield Líquida</span>
+                                            <span className="text-2xl font-black text-blue-400">{target.netYield}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="text-sm font-medium opacity-80 mb-8">{target.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Final CTA Area */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="bg-white rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 text-center space-y-8"
+                    >
+                        <h2 className="text-3xl md:text-5xl font-black text-[#003366]">Interessado em Avaliar o Dossier Completo?</h2>
+                        <p className="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto font-medium leading-relaxed">
+                            Agende uma call técnica ou uma visita ao ativo diretamente com o proprietário.
+                        </p>
+
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                            <button
+                                onClick={handleWhatsAppClick}
+                                className="group w-full md:w-auto px-12 py-7 text-white font-black text-xl md:text-2xl rounded-2xl shadow-[0_15px_45px_rgba(37,162,68,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-4 cursor-pointer"
+                                style={{ background: 'linear-gradient(135deg, #1a6b38 0%, #25a244 100%)' }}
+                            >
+                                <svg className="w-8 h-8 animate-bounce" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                </svg>
+                                <span>Iniciar Conversa WhatsApp</span>
+                            </button>
+                        </div>
+                        <p className="text-gray-400 font-bold uppercase tracking-[0.2em] text-xs">Exclusivo para investidores qualificados</p>
+                    </motion.div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
