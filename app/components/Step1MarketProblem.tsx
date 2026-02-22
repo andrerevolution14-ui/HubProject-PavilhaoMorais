@@ -14,14 +14,10 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
+    <div
       className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
     >
-      <div className="max-w-7xl w-full">
+      <div className="max-w-6xl w-full">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Left: Direct Message to Investor */}
           <div className="space-y-4 md:space-y-6">
@@ -161,6 +157,6 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

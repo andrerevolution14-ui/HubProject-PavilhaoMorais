@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Step1MarketProblem from './components/Step1MarketProblem';
 import Step2Solution from './components/Step2Solution';
 import Step3SocialProof from './components/Step3SocialProof';
@@ -37,28 +37,26 @@ export default function Home() {
   const nextStep = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     }
   };
 
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     }
   };
 
   return (
     <main className="relative">
       {/* Progress Indicator */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5 md:gap-2">
               {currentStep > 1 && (
                 <button
                   onClick={prevStep}
-                  className="p-1.5 md:p-2 hover:bg-[#F5F7FA] rounded-lg transition-colors"
+                  className="p-1.5 md:p-2 hover:bg-[#F5F7FA] rounded-lg transition-colors cursor-pointer"
                   aria-label="Voltar"
                 >
                   <svg className="w-4 h-4 md:w-5 md:h-5 text-[#003366]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,11 +64,11 @@ export default function Home() {
                   </svg>
                 </button>
               )}
-              <span className="text-xs md:text-sm font-medium text-[#003366]">
-                Passo {currentStep} de {totalSteps}
+              <span className="text-xs md:text-sm font-bold text-[#003366]">
+                PASSO {currentStep} DE {totalSteps}
               </span>
             </div>
-            <div className="text-xs md:text-sm text-gray-500 font-medium">
+            <div className="text-[10px] md:text-xs font-black uppercase tracking-widest text-gray-400">
               {currentStep === 1 && 'O Problema'}
               {currentStep === 2 && 'A Solução'}
               {currentStep === 3 && 'Prova Social'}
@@ -78,9 +76,9 @@ export default function Home() {
               {currentStep === 5 && 'A Oferta'}
             </div>
           </div>
-          <div className="w-full bg-[#F5F7FA] rounded-full h-1.5 md:h-2 overflow-hidden">
+          <div className="w-full bg-[#F5F7FA] rounded-full h-1.5 md:h-2 overflow-hidden shadow-inner">
             <div
-              className="bg-[#003366] h-full transition-all duration-500 ease-out"
+              className="bg-gradient-to-r from-[#003366] to-[#005599] h-full transition-all duration-700 ease-in-out"
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             />
           </div>
@@ -88,13 +86,68 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="pt-20 md:pt-24">
-        <AnimatePresence mode="wait">
-          {currentStep === 1 && <Step1MarketProblem key="step1" onNext={nextStep} />}
-          {currentStep === 2 && <Step2Solution key="step2" onNext={nextStep} />}
-          {currentStep === 3 && <Step3SocialProof key="step3" onNext={nextStep} />}
-          {currentStep === 4 && <Step4Asset key="step4" onNext={nextStep} />}
-          {currentStep === 5 && <Step5Offer key="step5" />}
+      <div className="pt-20 md:pt-24 overflow-x-hidden">
+        <AnimatePresence
+          mode="wait"
+          onExitComplete={() => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          }}
+        >
+          {currentStep === 1 && (
+            <motion.div
+              key="step1"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Step1MarketProblem onNext={nextStep} />
+            </motion.div>
+          )}
+          {currentStep === 2 && (
+            <motion.div
+              key="step2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Step2Solution onNext={nextStep} />
+            </motion.div>
+          )}
+          {currentStep === 3 && (
+            <motion.div
+              key="step3"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Step3SocialProof onNext={nextStep} />
+            </motion.div>
+          )}
+          {currentStep === 4 && (
+            <motion.div
+              key="step4"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Step4Asset onNext={nextStep} />
+            </motion.div>
+          )}
+          {currentStep === 5 && (
+            <motion.div
+              key="step5"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Step5Offer />
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
 

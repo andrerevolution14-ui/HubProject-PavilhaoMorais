@@ -44,13 +44,7 @@ export default function Step4Asset({ onNext }: Step4Props) {
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="min-h-screen bg-tech-grid flex items-center justify-center px-4 py-12 md:py-20"
-        >
+        <div className="min-h-screen bg-tech-grid flex items-center justify-center px-4 py-12 md:py-20">
             <div className="max-w-6xl w-full">
                 <div className="space-y-6 md:space-y-8">
                     <div className="text-center">
@@ -255,6 +249,6 @@ export default function Step4Asset({ onNext }: Step4Props) {
                     </button>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }

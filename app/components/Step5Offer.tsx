@@ -62,13 +62,7 @@ export default function Step5Offer({ onNext }: Step5Props) {
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20"
-        >
+        <div className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20">
             <div className="max-w-5xl w-full">
                 {/* CENTERED MODAL POPUP */}
                 <AnimatePresence>
@@ -376,6 +370,6 @@ export default function Step5Offer({ onNext }: Step5Props) {
                     </p>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }
