@@ -120,7 +120,7 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
                 <strong className="text-[#003366]">João, empresário de Coimbra</strong>, queria Aveiro Centro.
                 Esperou 8 meses por uma oportunidade. Quando apareceu, o preço tinha subido <strong className="text-red-600">€280k</strong>.
                 Decidiu investir numa <strong>alternativa estratégica</strong> a 15km de Aveiro.
-                Poupou €710k, arrendou por €9.000/mês, e tem <strong className="text-green-600">yield de 8%</strong>.
+                Poupou €895k, arrendou por €9.000/mês, e tem <strong className="text-green-600">yield de 8%</strong>.
               </p>
             </div>
 
@@ -151,8 +151,9 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
         <div className="mt-8 md:mt-12 text-center px-4">
           <button
             onClick={onNext}
-            className="group w-full md:w-auto px-6 md:px-8 py-4 md:py-5 bg-[#003366] text-white font-bold text-base md:text-lg rounded-xl hover:bg-[#004488] transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 md:gap-3"
+            className="group relative w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3 overflow-hidden border border-white/10"
           >
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
             <span className="text-sm md:text-base">Mostrar-me a Alternativa Estratégica</span>
             <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

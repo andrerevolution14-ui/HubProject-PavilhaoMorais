@@ -36,7 +36,7 @@ export default function Step5Offer({ onNext }: Step5Props) {
 
     const financialBreakdown = [
         { label: 'Preço de Aquisição', value: '€1.350.000', type: 'primary' },
-        { label: 'Preço por m²', value: '€511/m²', type: 'highlight', detail: '34% abaixo de Aveiro Centro' },
+        { label: 'Preço por m²', value: '€511/m²', type: 'highlight', detail: '40% abaixo de Aveiro Centro' },
         { label: 'Área Bruta', value: '2.640 m²', type: 'normal' },
         { label: 'Terreno Total', value: '4.272 m²', type: 'normal' }
     ];

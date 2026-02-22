@@ -42,8 +42,8 @@ export default function Step2Solution({ onNext }: Step2Props) {
     ];
 
     const comparativeData = [
-        { location: 'Aveiro Centro', pricePerM2: '€780/m²', availability: 'Esgotado', waitTime: '12-18 meses' },
-        { location: 'Cacia/Eixo', pricePerM2: '€650/m²', availability: 'Crítico', waitTime: '8-12 meses' },
+        { location: 'Aveiro Centro', pricePerM2: '€850/m²', availability: 'Esgotado', waitTime: '12-18 meses' },
+        { location: 'Oia/Oliverinha do Bairro', pricePerM2: '€680/m²', availability: 'Crítico', waitTime: '8-12 meses' },
         { location: 'Amoreira da Gândara', pricePerM2: '€511/m²', availability: '✓ Disponível', waitTime: 'Imediato', highlight: true }
     ];
 
@@ -70,7 +70,7 @@ export default function Step2Solution({ onNext }: Step2Props) {
                         <p className="text-base md:text-xl text-gray-700 leading-relaxed mb-4">
                             <strong className="text-[#003366]">Amoreira da Gândara</strong> está a <strong>15 minutos de Aveiro</strong>.
                             Dá-lhe acesso ao mesmo corredor logístico, às mesmas empresas, à mesma procura...
-                            mas poupa-lhe <strong className="text-green-600">€710.000</strong>.
+                            mas poupa-lhe <strong className="text-green-600">€895.000</strong>.
                         </p>
 
                         <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 rounded-lg p-4 md:p-6 mb-4 md:mb-6">
@@ -84,7 +84,7 @@ export default function Step2Solution({ onNext }: Step2Props) {
                                 </li>
                                 <li className="flex items-start gap-2 md:gap-3">
                                     <span className="text-green-600 text-lg md:text-xl font-bold flex-shrink-0">2.</span>
-                                    <span><strong>Poupa €269/m²</strong> vs. Aveiro Centro (€511 vs €780)</span>
+                                    <span><strong>Poupa €339/m²</strong> vs. Aveiro Centro (€511 vs €850)</span>
                                 </li>
                                 <li className="flex items-start gap-2 md:gap-3">
                                     <span className="text-green-600 text-lg md:text-xl font-bold flex-shrink-0">3.</span>
@@ -235,8 +235,8 @@ export default function Step2Solution({ onNext }: Step2Props) {
 
                         <div className="mt-6 bg-blue-50 border-l-4 border-[#003366] p-4 rounded text-left">
                             <p className="text-sm text-gray-700 leading-relaxed">
-                                <strong className="text-[#003366]">Vantagem Competitiva:</strong> Ao preço de €511/m², está a poupar <strong>€269/m²</strong> vs. Aveiro Centro.
-                                Num pavilhão de 2.640m², isso representa uma poupança de <strong>€710.160</strong> — capital que pode reinvestir ou usar para melhorias.
+                                <strong className="text-[#003366]">Vantagem Competitiva:</strong> Ao preço de €511/m², está a poupar <strong>€339/m²</strong> vs. Aveiro Centro.
+                                Num pavilhão de 2.640m², isso representa uma poupança de <strong>€894.960</strong> — capital que pode reinvestir ou usar para melhorias.
                             </p>
                         </div>
                     </div>
@@ -246,8 +246,9 @@ export default function Step2Solution({ onNext }: Step2Props) {
                 <div className="mt-8 md:mt-12 text-center px-4">
                     <button
                         onClick={onNext}
-                        className="group w-full md:w-auto px-6 md:px-8 py-4 md:py-5 bg-[#003366] text-white font-bold text-base md:text-lg rounded-xl hover:bg-[#004488] transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 md:gap-3"
+                        className="group relative w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3 overflow-hidden border border-white/10"
                     >
+                        <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                         <span>Ver Quem Já Investiu Aqui</span>
                         <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

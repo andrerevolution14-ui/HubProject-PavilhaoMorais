@@ -11,8 +11,8 @@
 /* Professional Background Utilities */
 .bg-premium-white {
   background-color: #ffffff;
-  background-image: radial-gradient(#003366 0.5px, transparent 0.5px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(0, 51, 102, 0.08) 0.5px, transparent 0.5px);
+  background-size: 28px 28px;
   background-attachment: fixed;
 }
 
@@ -24,15 +24,16 @@
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(0, 51, 102, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0, 51, 102, 0.07) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
 .bg-tech-grid {
+  background-color: #f8fafc;
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(0, 51, 102, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 51, 102, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 51, 102, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 51, 102, 0.04) 1px, transparent 1px);
 }
 
 body {

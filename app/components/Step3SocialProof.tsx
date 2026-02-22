@@ -63,9 +63,9 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                         {lots.map((lot, index) => (
                             <motion.div
                                 key={lot.id}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.1 + index * 0.05 }}
+                                initial={{ opacity: 0, scale: 0.6, y: 10 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                transition={{ delay: 0.3 + index * 0.12, duration: 0.6, type: 'spring', stiffness: 80, damping: 15 }}
                                 className={`aspect-square rounded-lg flex flex-col items-center justify-center font-semibold text-xs md:text-sm transition-all overflow-hidden ${lot.reserved
                                     ? lot.company
                                         ? 'bg-[#FFCC00] text-[#003399] shadow-xl border-2 border-[#003399]'
@@ -146,8 +146,9 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                     <div className="mt-8 md:mt-12 text-center px-4">
                         <button
                             onClick={onNext}
-                            className="group w-full md:w-auto px-6 md:px-8 py-4 md:py-5 bg-[#1a365d] text-white font-bold text-base md:text-lg rounded-xl hover:bg-[#004488] transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 md:gap-3"
+                            className="group relative w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3 overflow-hidden border border-white/10"
                         >
+                            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                             <span>Ver Oportunidade Disponível (Off-Market)</span>
                             <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
