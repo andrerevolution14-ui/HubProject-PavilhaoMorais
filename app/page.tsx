@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Step1MarketProblem from './components/Step1MarketProblem';
 import Step2Solution from './components/Step2Solution';
@@ -8,9 +8,31 @@ import Step3SocialProof from './components/Step3SocialProof';
 import Step4Asset from './components/Step4Asset';
 import Step5Offer from './components/Step5Offer';
 
+// Nomes dos passos para Analytics e Pixel
+const stepNames: Record<number, string> = {
+  1: 'O Problema de Mercado',
+  2: 'A Alternativa Estratégica',
+  3: 'Prova Social — Lotes',
+  4: 'O Ativo Industrial',
+  5: 'Análise Financeira — Oferta',
+};
+
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
+
+  // Disparar ViewContent sempre que o passo muda
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'ViewContent', {
+        content_name: stepNames[currentStep],
+        content_category: 'Funnel Step',
+        content_ids: [`step_${currentStep}`],
+        value: currentStep === 5 ? 1350000 : 0,
+        currency: 'EUR',
+      });
+    }
+  }, [currentStep]);
 
   const nextStep = () => {
     if (currentStep < totalSteps) {
