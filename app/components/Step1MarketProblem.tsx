@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { fadeUp } from '../utils/animations';
 
 interface Step1Props {
   onNext: () => void;
@@ -8,195 +9,197 @@ interface Step1Props {
 
 export default function Step1MarketProblem({ onNext }: Step1Props) {
   const marketData = [
-    { metric: 'Taxa de Ocupação Aveiro Centro', value: '98.7%', trend: 'Crítico' },
-    { metric: 'Tempo Médio de Venda', value: '< 45 dias', trend: 'Recorde' },
-    { metric: 'Valorização 2024-2026', value: '+127%', trend: 'Explosivo' }
+    { metric: 'Taxa de Ocupação Aveiro Centro', value: '98.7%', trend: 'Crítico', color: '#dc2626' },
+    { metric: 'Tempo Médio de Venda', value: '< 45 dias', trend: 'Recorde', color: '#d97706' },
+    { metric: 'Valorização 2024-2026', value: '+127%', trend: 'Explosivo', color: '#dc2626' },
   ];
 
   return (
-    <div className="min-h-screen bg-premium-white flex items-center justify-center px-4 py-12 md:py-20">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-16 md:py-24"
+      style={{ backgroundColor: '#ffffff', backgroundImage: 'radial-gradient(rgba(0,51,102,0.07) 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+    >
       <div className="max-w-7xl w-full">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-          {/* Left: Direct Message to Investor */}
-          <div className="space-y-4 md:space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-red-50 border border-red-200 rounded-full text-xs md:text-sm font-semibold text-red-700"
-            >
-              🚨 Para Investidores em Aveiro Centro
+
+        {/* ── Grid Layout ── */}
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+
+          {/* ── LEFT ── */}
+          <div className="space-y-5 md:space-y-7">
+
+            {/* Badge */}
+            <motion.div {...fadeUp(0)}>
+              <span
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest"
+                style={{ background: '#fff1f2', color: '#991b1b', border: '1px solid #fecaca' }}
+              >
+                🚨 Para Investidores em Aveiro Centro
+              </span>
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] leading-tight"
-            >
-              Quer Investir em Aveiro Centro?<br />
-              <span className="text-red-600">Tem Um Problema.</span>
+            {/* Heading */}
+            <motion.h1 {...fadeUp(0.07)} className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.08] tracking-tight">
+              <span style={{ color: '#003366' }}>Quer Investir em<br />Aveiro Centro?</span><br />
+              <span style={{ color: '#dc2626' }}>Tem Um Problema.</span>
             </motion.h1>
 
+            {/* Alert box */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.16 }}
-              className="bg-[#F5F7FA] rounded-xl p-4 md:p-6 border-l-4 border-red-600"
+              {...fadeUp(0.14)}
+              className="rounded-2xl p-5 md:p-6"
+              style={{ background: '#f8fafc', borderLeft: '4px solid #dc2626' }}
             >
-              <p className="text-base md:text-lg font-semibold text-[#003366] mb-2">
-                A Verdade que Ninguém Lhe Diz:
-              </p>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+              <p className="text-base font-bold mb-2" style={{ color: '#003366' }}>A Verdade que Ninguém Lhe Diz:</p>
+              <p className="text-sm md:text-base leading-relaxed" style={{ color: '#374151' }}>
                 <strong>Aveiro Centro está esgotado.</strong> Não há espaço industrial disponível. Zero. E quando aparecer algo (daqui a 12-18 meses),
-                vai pagar <strong className="text-red-600">+30-40% mais</strong> do que pagaria hoje... noutro sítio.
+                vai pagar <strong style={{ color: '#dc2626' }}>+30-40% mais</strong> do que pagaria hoje... noutro sítio.
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.22 }}
-              className="space-y-3 md:space-y-4"
-            >
-              <h3 className="text-lg md:text-xl font-bold text-[#003366]">📊 Os Números Que Precisa de Ver:</h3>
-              {marketData.map((data, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1, duration: 0.5, ease: 'easeOut' }}
-                  className="flex items-center justify-between bg-white border-2 border-[#F5F7FA] rounded-lg p-3 md:p-4 hover:border-[#003366]/30 transition-colors gap-2 shadow-sm"
-                >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs md:text-sm text-gray-600 truncate">{data.metric}</p>
-                    <p className="text-xl md:text-2xl font-bold text-[#003366]">{data.value}</p>
-                  </div>
-                  <span className="px-2 md:px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full whitespace-nowrap">
-                    {data.trend}
-                  </span>
-                </motion.div>
-              ))}
+            {/* Stats */}
+            <motion.div {...fadeUp(0.2)}>
+              <h3 className="text-lg font-black mb-4 uppercase tracking-wide" style={{ color: '#003366' }}>📊 Os Números Que Precisa de Ver:</h3>
+              <div className="space-y-3">
+                {marketData.map((d, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.28 + i * 0.09, duration: 0.45, ease: 'easeOut' }}
+                    className="flex items-center justify-between rounded-xl p-4 gap-3"
+                    style={{ background: '#ffffff', border: '1.5px solid #e5e7eb', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}
+                  >
+                    <div>
+                      <p className="text-xs font-medium mb-0.5" style={{ color: '#6b7280' }}>{d.metric}</p>
+                      <p className="text-2xl font-black" style={{ color: '#003366' }}>{d.value}</p>
+                    </div>
+                    <span
+                      className="shrink-0 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wide"
+                      style={{ background: '#fff1f2', color: d.color }}
+                    >
+                      {d.trend}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
 
+            {/* Warning block */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
-              className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4 md:p-5"
+              {...fadeUp(0.5)}
+              className="rounded-2xl p-5 md:p-6"
+              style={{ background: '#fffbeb', border: '1.5px solid #fcd34d' }}
             >
-              <p className="text-sm font-bold text-yellow-900 mb-2">⚡ O Que Isto Significa Para Si:</p>
-              <ul className="space-y-2 text-xs md:text-sm text-yellow-800">
-                <li className="flex items-start gap-2">
-                  <span className="text-yellow-600 mt-0.5 flex-shrink-0">▸</span>
-                  <span>Se quer Aveiro, <strong>já perdeu</strong> — está tudo reservado</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-yellow-600 mt-0.5 flex-shrink-0">▸</span>
-                  <span>Se esperar, vai pagar <strong>€200-300/m² a mais</strong> daqui a 1 ano</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-yellow-600 mt-0.5 flex-shrink-0">▸</span>
-                  <span>Mas há <strong>1 alternativa</strong> que 99% dos investidores ainda não descobriu</span>
-                </li>
+              <p className="text-sm font-black mb-3" style={{ color: '#92400e' }}>⚡ O Que Isto Significa Para Si:</p>
+              <ul className="space-y-2 text-sm" style={{ color: '#78350f' }}>
+                {[
+                  ['Se quer Aveiro, ', 'já perdeu', ' — está tudo reservado'],
+                  ['Se esperar, vai pagar ', '€200-300/m² a mais', ' daqui a 1 ano'],
+                  ['Mas há ', '1 alternativa', ' que 99% dos investidores ainda não descobriu'],
+                ].map(([a, b, c], i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="mt-0.5 shrink-0" style={{ color: '#d97706' }}>▸</span>
+                    <span>{a}<strong>{b}</strong>{c}</span>
+                  </li>
+                ))}
               </ul>
             </motion.div>
           </div>
 
-          {/* Right: Visual Data */}
-          <div className="space-y-6 md:space-y-8">
+          {/* ── RIGHT ── */}
+          <div className="space-y-5 md:space-y-6">
+
+            {/* Dark card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-              className="bg-[#002244] bg-premium-blue rounded-2xl md:rounded-3xl p-6 md:p-10 text-white shadow-2xl relative overflow-hidden border border-white/10"
+              {...fadeUp(0.18)}
+              className="rounded-3xl p-7 md:p-10 relative overflow-hidden"
+              style={{ background: 'linear-gradient(135deg, #002244 0%, #003366 50%, #004488 100%)', boxShadow: '0 24px 60px -12px rgba(0,51,102,0.45)' }}
             >
+              {/* decorative circles */}
+              <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #0066cc, transparent)' }} />
+              <div className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #FFCC00, transparent)' }} />
+
               <div className="relative z-10">
-                <h3 className="text-xl md:text-3xl font-black mb-4 md:mb-6 tracking-tight flex items-center gap-3">
-                  <span className="text-2xl md:text-4xl">💡</span>
-                  <span>Porque É Que Isto Aconteceu:</span>
-                </h3>
-                <div className="space-y-4 md:space-y-5 text-sm md:text-lg">
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>O e-commerce <strong>duplicou</strong> a procura por armazéns desde 2020</span>
-                  </p>
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>Grandes operadores pagam <strong>yields de 7-9%</strong> — muito acima do residencial</span>
-                  </p>
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>Aveiro tornou-se <strong>o hub logístico</strong> da Região Centro</span>
-                  </p>
-                  <p className="flex items-start gap-2">
-                    <span className="text-yellow-300 flex-shrink-0">✓</span>
-                    <span>Resultado: <strong>procura 5x superior à oferta</strong></span>
-                  </p>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-3xl">💡</span>
+                  <h3 className="text-xl md:text-2xl font-black text-white">Porque É Que Isto Aconteceu:</h3>
+                </div>
+                <div className="space-y-4 text-sm md:text-base">
+                  {[
+                    'O e-commerce <strong>duplicou</strong> a procura por armazéns desde 2020',
+                    'Grandes operadores pagam <strong>yields de 7-9%</strong> — muito acima do residencial',
+                    'Aveiro tornou-se <strong>o hub logístico</strong> da Região Centro',
+                    'Resultado: <strong>procura 5x superior à oferta</strong>',
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="shrink-0 mt-1 text-xs font-black" style={{ color: '#FFCC00' }}>✓</span>
+                      <p className="text-white/90 leading-relaxed" dangerouslySetInnerHTML={{ __html: text }} />
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
 
+            {/* Case study */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-              className="bg-white border-2 border-[#003366] rounded-xl p-4 md:p-6"
+              {...fadeUp(0.26)}
+              className="rounded-2xl p-5 md:p-6"
+              style={{ background: '#ffffff', border: '1.5px solid #003366', boxShadow: '0 4px 20px rgba(0,51,102,0.08)' }}
             >
-              <p className="text-xs text-gray-500 mb-2">CASO REAL — INVESTIDOR COMO VOCÊ</p>
-              <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
-                <strong className="text-[#003366]">João, empresário de Coimbra</strong>, queria Aveiro Centro.
-                Esperou 8 meses por uma oportunidade. Quando apareceu, o preço tinha subido <strong className="text-red-600">€280k</strong>.
+              <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: '#9ca3af' }}>Caso Real — Investidor Como Você</p>
+              <p className="text-sm leading-relaxed" style={{ color: '#374151' }}>
+                <strong style={{ color: '#003366' }}>João, empresário de Coimbra</strong>, queria Aveiro Centro.
+                Esperou 8 meses por uma oportunidade. Quando apareceu, o preço tinha subido{' '}
+                <strong style={{ color: '#dc2626' }}>€280k</strong>.
                 Decidiu investir numa <strong>alternativa estratégica</strong> a 15km de Aveiro.
-                Poupou €895k, arrendou por €9.000/mês, e tem <strong className="text-green-600">yield de 8%</strong>.
+                Poupou €895k, arrendou por €9.000/mês, e tem{' '}
+                <strong style={{ color: '#16a34a' }}>yield de 8%</strong>.
               </p>
             </motion.div>
 
+            {/* Data table */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.38 }}
-              className="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 rounded-xl p-4 md:p-6"
+              {...fadeUp(0.34)}
+              className="rounded-2xl p-5 md:p-6"
+              style={{ background: 'linear-gradient(135deg, #fffbeb, #fff7ed)', border: '1.5px solid #fcd34d' }}
             >
-              <h4 className="font-bold text-[#003366] mb-2 md:mb-3 flex items-center gap-2 text-base md:text-lg">
-                <span className="text-xl md:text-2xl">📈</span>
-                Dados de Mercado 2024
-              </h4>
-              <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-700">
-                <p className="flex justify-between gap-2">
-                  <span>Taxa de Ocupação Aveiro:</span>
-                  <strong className="text-red-600">98.7%</strong>
-                </p>
-                <p className="flex justify-between gap-2">
-                  <span>Tempo Médio de Venda:</span>
-                  <strong className="text-[#003366]">&lt; 45 dias</strong>
-                </p>
-                <p className="flex justify-between gap-2">
-                  <span>Valorização 2024-2026:</span>
-                  <strong className="text-green-600">+127%</strong>
-                </p>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-xl">📈</span>
+                <h4 className="font-black text-sm uppercase tracking-wide" style={{ color: '#003366' }}>Dados de Mercado 2024</h4>
+              </div>
+              <div className="space-y-2.5">
+                {[
+                  ['Taxa de Ocupação Aveiro:', '98.7%', '#dc2626'],
+                  ['Tempo Médio de Venda:', '< 45 dias', '#003366'],
+                  ['Valorização 2024-2026:', '+127%', '#16a34a'],
+                ].map(([label, val, color], i) => (
+                  <div key={i} className="flex justify-between items-center text-sm">
+                    <span style={{ color: '#374151' }}>{label}</span>
+                    <strong style={{ color }}>{val}</strong>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.55 }}
-          className="mt-8 md:mt-12 text-center px-4"
-        >
+        {/* ── CTA ── */}
+        <motion.div {...fadeUp(0.55)} className="mt-12 md:mt-16 flex justify-center px-4">
           <button
             onClick={onNext}
-            className="group w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3"
+            className="group relative w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 md:px-14 py-5 md:py-6 rounded-2xl font-black text-base md:text-lg text-white transition-all duration-300 hover:scale-[1.03]"
+            style={{
+              background: 'linear-gradient(135deg, #003366 0%, #0055aa 100%)',
+              boxShadow: '0 8px 32px -4px rgba(0,51,102,0.45)',
+            }}
           >
             <span>Mostrar-me a Alternativa Estratégica</span>
-            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </button>
         </motion.div>
+
       </div>
     </div>
   );

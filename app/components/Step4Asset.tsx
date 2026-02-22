@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { fadeUp } from '../utils/animations';
 
 interface Step4Props {
     onNext: () => void;
@@ -12,161 +13,245 @@ export default function Step4Asset({ onNext }: Step4Props) {
         { label: 'Área Bruta', value: '2.640 m²', icon: '📐', detail: '2.530 m² úteis' },
         { label: 'Terreno Total', value: '4.272 m²', icon: '🏗️', detail: 'Amplo espaço exterior' },
         { label: 'Ano Construção', value: '2006', icon: '📅', detail: 'Segunda mão / Bom estado' },
-        { label: 'Casas de Banho', value: '4 WC', icon: '🚻', detail: 'Distribuídos por pisos' }
+        { label: 'Casas de Banho', value: '4 WC', icon: '🚻', detail: 'Distribuídos por pisos' },
     ];
 
-    const floorDistribution = [
+    const floors = [
         {
-            floor: 'Rés-do-Chão',
-            features: ['2 amplos pavilhões conectados', '2 balneários completos', 'Refeitório equipado', 'Movimentação de viaturas pesadas']
+            label: 'Rés-do-Chão', icon: '🏭',
+            features: ['2 amplos pavilhões conectados', '2 balneários completos', 'Refeitório equipado', 'Movimentação de viaturas pesadas'],
         },
         {
-            floor: '1º Andar',
-            features: ['2 salas/escritórios', 'Espaço amplo para trabalho administrativo', '2 casas de banho', 'Sala de arquivo']
-        }
+            label: '1º Andar', icon: '🏢',
+            features: ['2 salas/escritórios', 'Espaço amplo para trabalho administrativo', '2 casas de banho', 'Sala de arquivo'],
+        },
     ];
 
-    const keyHighlights = [
-        { icon: '✓', text: 'Licença para Indústria aprovada', color: 'green' },
-        { icon: '✓', text: 'Pronto a escriturar', color: 'green' },
-        { icon: '✓', text: 'Licença B — Segurança Contra Incêndios certificada', color: 'green' },
-        { icon: '✓', text: 'PT 200-300A — Ponto de Transformação de Alta Potência', color: 'blue' },
-        { icon: '✓', text: 'Certificado energético: Propriedade isenta', color: 'blue' },
-        { icon: '✓', text: 'Construção sólida com boas áreas', color: 'blue' }
+    // NOTE: Licença B (fire safety license category) and Segurança Contra Incêndios
+    // (fire safety certification) are TWO separate items as corrected by user
+    const highlights = [
+        { text: 'Licença para Indústria aprovada', color: 'green' },
+        { text: 'Pronto a escriturar', color: 'green' },
+        { text: 'Licença B', color: 'green' },
+        { text: 'Segurança Contra Incêndios certificada', color: 'green' },
+        { text: 'PT 200-300A — Ponto de Transformação de Alta Potência', color: 'blue' },
+        { text: 'Certificado energético: Propriedade isenta', color: 'blue' },
+        { text: 'Construção sólida com boas áreas', color: 'blue' },
     ];
 
     return (
-        <div className="min-h-screen bg-tech-grid flex items-center justify-center px-4 py-12 md:py-20">
-            <div className="max-w-6xl w-full">
-                <div className="space-y-6 md:space-y-8">
-                    <div className="text-center">
-                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: 'easeOut' }} className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-white rounded-full text-xs md:text-sm font-medium text-[#003366] shadow-sm mb-4 md:mb-6">
+        <div
+            className="min-h-screen flex items-center justify-center px-4 py-16 md:py-24"
+            style={{ backgroundColor: '#f8fafc', backgroundImage: 'linear-gradient(to right, rgba(0,51,102,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,51,102,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+        >
+            <div className="max-w-6xl w-full space-y-10 md:space-y-14">
+
+                {/* ── Header ── */}
+                <div className="text-center">
+                    <motion.div {...fadeUp(0)}>
+                        <span
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest"
+                            style={{ background: '#ffffff', color: '#003366', border: '1px solid #d1d5db', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}
+                        >
                             📋 Análise Técnica Completa
-                        </motion.div>
-                        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] mb-4 leading-tight">
-                            Pavilhão Industrial<br />N333-1, Amoreira da Gândara
-                        </motion.h1>
-                        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.14 }} className="text-base md:text-xl text-gray-700 max-w-3xl mx-auto mb-6 md:mb-8">
-                            Um ativo industrial <strong>pronto a gerar rendimento</strong>, com licenciamento aprovado e infraestruturas de qualidade superior.
-                        </motion.p>
+                        </span>
+                    </motion.div>
 
-                        <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }} className="bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-2 border-orange-400 rounded-xl md:rounded-2xl p-4 md:p-8 max-w-4xl mx-auto mb-6 md:mb-8 shadow-xl">
-                            <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 text-center">
-                                <span className="text-2xl md:text-4xl">🎯</span>
-                                <h2 className="text-lg md:text-3xl font-bold text-[#003366] uppercase">A ÚNICA SOLUÇÃO DISPONÍVEL</h2>
-                                <span className="text-2xl md:text-4xl">🎯</span>
-                            </div>
-                            <p className="text-base md:text-lg text-gray-800 leading-relaxed mb-4">
-                                Este é <strong className="text-[#003366]">o último pavilhão industrial premium</strong> disponível em Amoreira da Gândara com <strong>licenciamento aprovado</strong> e <strong>pronto a escriturar</strong>.
-                            </p>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-left">
-                                <div className="bg-white/80 rounded-lg p-3 md:p-4 border border-orange-200">
-                                    <p className="text-sm font-semibold text-orange-700 mb-1">✓ Disponibilidade</p>
-                                    <p className="text-xs text-gray-700">Todos os outros lotes: <strong>RESERVADOS</strong></p>
-                                </div>
-                                <div className="bg-white/80 rounded-lg p-3 md:p-4 border border-orange-200">
-                                    <p className="text-sm font-semibold text-orange-700 mb-1">✓ Timing</p>
-                                    <p className="text-xs text-gray-700">Próxima oportunidade: <strong>12-18 meses</strong></p>
-                                </div>
-                                <div className="bg-white/80 rounded-lg p-3 md:p-4 border border-orange-200">
-                                    <p className="text-sm font-semibold text-orange-700 mb-1">✓ Preço</p>
-                                    <p className="text-xs text-gray-700">Futuras construções: <strong>+30-40% mais caras</strong></p>
-                                </div>
-                            </div>
-                            <div className="mt-4 md:mt-6 pt-4 border-t-2 border-orange-200">
-                                <p className="text-xs md:text-sm font-bold text-[#003366] text-center">
-                                    💎 Para completar este investimento da melhor forma, <span className="text-orange-600">esta é a sua única opção hoje</span>.
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
+                    <motion.h1 {...fadeUp(0.07)} className="mt-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.08]" style={{ color: '#003366' }}>
+                        Pavilhão Industrial<br />N333-1, Amoreira da Gândara
+                    </motion.h1>
 
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }} className="rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
-                        <Image src="/warehouse-interior.jpg" alt="Interior do Pavilhão Industrial N333-1" width={1200} height={800} className="w-full h-auto" priority />
-                        <div className="p-4 md:p-6 bg-gradient-to-r from-[#003366] to-[#004488]">
-                            <p className="text-center font-semibold text-sm md:text-base leading-snug text-white">
-                                <span className="text-xl mr-1">📸</span> Vista interior real do pavilhão — <strong className="text-white">2.640m² de área útil</strong>, pé-direito alto, iluminação natural, pronto a operar
+                    <motion.p {...fadeUp(0.13)} className="mt-5 text-base md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#374151' }}>
+                        Um ativo industrial <strong>pronto a gerar rendimento</strong>, com licenciamento aprovado e infraestruturas de qualidade superior.
+                    </motion.p>
+
+                    {/* ── Urgency Banner ── */}
+                    <motion.div
+                        {...fadeUp(0.19)}
+                        className="mt-7 rounded-3xl p-6 md:p-9 max-w-4xl mx-auto"
+                        style={{ background: 'linear-gradient(135deg, #fffbeb, #fff7ed)', border: '2px solid #f59e0b', boxShadow: '0 8px 32px rgba(245,158,11,0.15)' }}
+                    >
+                        <div className="flex items-center justify-center gap-3 mb-4">
+                            <span className="text-3xl">🎯</span>
+                            <h2 className="text-xl md:text-2xl font-black uppercase" style={{ color: '#003366' }}>A ÚNICA SOLUÇÃO DISPONÍVEL</h2>
+                            <span className="text-3xl">🎯</span>
+                        </div>
+                        <p className="text-sm md:text-base leading-relaxed mb-5" style={{ color: '#374151' }}>
+                            Este é <strong style={{ color: '#003366' }}>o último pavilhão industrial premium</strong> disponível em Amoreira da Gândara
+                            com <strong>licenciamento aprovado</strong> e <strong>pronto a escriturar</strong>.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            {[
+                                ['✓ Disponibilidade', 'Todos os outros lotes: RESERVADOS'],
+                                ['✓ Timing', 'Próxima oportunidade: 12-18 meses'],
+                                ['✓ Preço', 'Futuras construções: +30-40% mais caras'],
+                            ].map(([title, desc]) => (
+                                <div key={title} className="rounded-xl p-4 text-left" style={{ background: 'rgba(255,255,255,0.8)', border: '1px solid #fcd34d' }}>
+                                    <p className="text-sm font-black mb-1" style={{ color: '#b45309' }}>{title}</p>
+                                    <p className="text-xs" style={{ color: '#374151' }}>{desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-5 pt-4" style={{ borderTop: '1px solid #fcd34d' }}>
+                            <p className="text-xs md:text-sm font-bold text-center" style={{ color: '#003366' }}>
+                                💎 Para completar este investimento da melhor forma,{' '}
+                                <span style={{ color: '#d97706' }}>esta é a sua única opção hoje</span>.
                             </p>
                         </div>
                     </motion.div>
+                </div>
 
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.35 }} className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 lg:p-12 shadow-2xl">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6">🔍 Especificações Técnicas</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
-                            {technicalSpecs.map((spec, index) => (
-                                <motion.div key={index} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 + index * 0.08, duration: 0.5, ease: 'easeOut' }} className="bg-[#F5F7FA] rounded-xl p-4 md:p-6 text-left hover:shadow-md transition-shadow">
-                                    <div className="flex items-start gap-4">
-                                        <span className="text-3xl md:text-4xl">{spec.icon}</span>
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-xs md:text-sm text-gray-600 font-medium mb-0.5 md:mb-1">{spec.label}</p>
-                                            <p className="text-xl md:text-2xl font-bold text-[#003366] mb-0.5 md:mb-1">{spec.value}</p>
-                                            <p className="text-[10px] md:text-xs text-gray-500">{spec.detail}</p>
+                {/* ── Photo ── */}
+                <motion.div {...fadeUp(0.28)} className="rounded-3xl overflow-hidden" style={{ boxShadow: '0 24px 60px -12px rgba(0,0,0,0.18)' }}>
+                    <Image
+                        src="/warehouse-interior.jpg"
+                        alt="Interior do Pavilhão Industrial N333-1"
+                        width={1200}
+                        height={800}
+                        className="w-full h-auto"
+                        priority
+                    />
+                    <div
+                        className="p-4 md:p-5 flex items-center justify-center gap-2"
+                        style={{ background: 'linear-gradient(135deg, #003366, #004488)' }}
+                    >
+                        <span className="text-lg shrink-0">📸</span>
+                        <p className="text-sm text-center font-medium text-white">
+                            Vista interior real do pavilhão —{' '}
+                            <strong className="text-white">2.640m² de área útil</strong>, pé-direito alto, iluminação natural, pronto a operar
+                        </p>
+                    </div>
+                </motion.div>
+
+                {/* ── Main Card ── */}
+                <motion.div
+                    {...fadeUp(0.34)}
+                    className="rounded-3xl p-6 md:p-10"
+                    style={{ background: '#ffffff', border: '1.5px solid #e5e7eb', boxShadow: '0 8px 40px rgba(0,0,0,0.07)' }}
+                >
+
+                    {/* Technical Specs */}
+                    <h3 className="text-xl md:text-2xl font-black mb-6" style={{ color: '#003366' }}>🔍 Especificações Técnicas</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                        {technicalSpecs.map((s, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: -16 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.4 + i * 0.07, duration: 0.45, ease: 'easeOut' }}
+                                className="flex items-start gap-4 rounded-2xl p-5"
+                                style={{ background: '#f8fafc', border: '1px solid #e5e7eb' }}
+                            >
+                                <span className="text-3xl">{s.icon}</span>
+                                <div>
+                                    <p className="text-xs font-medium mb-0.5" style={{ color: '#6b7280' }}>{s.label}</p>
+                                    <p className="text-2xl font-black" style={{ color: '#003366' }}>{s.value}</p>
+                                    <p className="text-xs mt-0.5" style={{ color: '#9ca3af' }}>{s.detail}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Floor Distribution */}
+                    <div style={{ borderTop: '1.5px solid #f3f4f6', paddingTop: '2rem', marginBottom: '2rem' }}>
+                        <h3 className="text-xl md:text-2xl font-black mb-6" style={{ color: '#003366' }}>🏢 Distribuição dos Espaços</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            {floors.map((floor, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 16 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.55 + i * 0.1, duration: 0.5, ease: 'easeOut' }}
+                                    className="rounded-2xl p-6 relative overflow-hidden"
+                                    style={{ background: 'linear-gradient(135deg, #002244 0%, #003366 50%, #004488 100%)', boxShadow: '0 8px 32px rgba(0,51,102,0.3)' }}
+                                >
+                                    <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-10" style={{ background: 'white' }} />
+                                    <div className="relative z-10">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <span className="text-2xl p-2 rounded-xl" style={{ background: 'rgba(255,255,255,0.15)' }}>{floor.icon}</span>
+                                            <h4 className="font-black text-lg text-white">{floor.label}</h4>
                                         </div>
+                                        <ul className="space-y-2.5">
+                                            {floor.features.map((f, j) => (
+                                                <li key={j} className="flex items-start gap-2.5 text-sm text-white/90">
+                                                    <span className="mt-0.5 shrink-0 font-black" style={{ color: '#FFCC00' }}>▶</span>
+                                                    <span>{f}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
 
-                        <div className="border-t-2 border-gray-100 pt-6 md:pt-8 mb-6 md:mb-8">
-                            <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6">🏢 Distribuição dos Espaços</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                                {floorDistribution.map((floor, index) => (
-                                    <motion.div key={index} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 + index * 0.1, duration: 0.5, ease: 'easeOut' }} className="bg-gradient-to-br from-[#003366] to-[#004488] rounded-xl p-5 md:p-6 text-white shadow-lg overflow-hidden relative">
-                                        <div className="relative z-10 text-left">
-                                            <h4 className="text-lg md:text-xl font-black mb-3 md:mb-4 flex items-center gap-3">
-                                                <span className="text-2xl md:text-3xl bg-white/20 p-1.5 rounded-lg">{index === 0 ? '🏭' : '🏢'}</span>
-                                                <span className="tracking-tight">{floor.floor}</span>
-                                            </h4>
-                                            <ul className="space-y-2 md:space-y-3">
-                                                {floor.features.map((feature, idx) => (
-                                                    <li key={idx} className="flex items-start gap-3 text-sm md:text-base leading-snug">
-                                                        <span className="text-yellow-400 mt-1 flex-shrink-0 font-bold">▶</span>
-                                                        <span className="font-medium text-white/95">{feature}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 -mr-16 -mt-16 rounded-full blur-2xl pointer-events-none" />
-                                    </motion.div>
-                                ))}
+                    {/* Highlights */}
+                    <div style={{ borderTop: '1.5px solid #f3f4f6', paddingTop: '2rem' }}>
+                        <h3 className="text-xl md:text-2xl font-black mb-6" style={{ color: '#003366' }}>⭐ Destaques do Imóvel</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {highlights.map((h, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.7 + i * 0.05, duration: 0.4, ease: 'easeOut' }}
+                                    className="flex items-center gap-3 rounded-xl p-4"
+                                    style={{
+                                        background: h.color === 'green' ? '#f0fdf4' : '#eff6ff',
+                                        border: `1.5px solid ${h.color === 'green' ? '#86efac' : '#bfdbfe'}`,
+                                    }}
+                                >
+                                    <span className="text-lg font-black shrink-0" style={{ color: h.color === 'green' ? '#16a34a' : '#1d4ed8' }}>✓</span>
+                                    <p className="font-bold text-sm leading-tight" style={{ color: h.color === 'green' ? '#14532d' : '#1e3a8a' }}>{h.text}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Investment Insight */}
+                    <motion.div
+                        {...fadeUp(1.05)}
+                        className="mt-8 rounded-2xl p-6 md:p-8"
+                        style={{ background: 'linear-gradient(135deg, #fffbeb, #fef3c7)', border: '2px solid #fcd34d', boxShadow: '0 4px 20px rgba(251,191,36,0.15)' }}
+                    >
+                        <div className="flex flex-col sm:flex-row items-start gap-4 md:gap-6">
+                            <div
+                                className="text-4xl p-3 rounded-2xl shrink-0"
+                                style={{ background: '#fcd34d', boxShadow: '0 4px 12px rgba(252,211,77,0.4)' }}
+                            >
+                                💡
+                            </div>
+                            <div>
+                                <h4 className="font-black text-lg md:text-xl mb-2" style={{ color: '#003366' }}>Porque é que este pavilhão vale €1.35M?</h4>
+                                <p className="text-sm md:text-base leading-relaxed" style={{ color: '#374151' }}>
+                                    A <strong style={{ color: '#003366' }}>€511/m²</strong>, está <strong>40% abaixo</strong> do preço médio de Aveiro.
+                                    Com <strong>2.640m² de área bruta</strong> e <strong>4.272m² de terreno</strong>, tem capacidade para gerar{' '}
+                                    <strong style={{ color: '#16a34a' }}>€7.000-9.000/mês</strong> em arrendamento —
+                                    um <strong>yield bruto de 6.2-8.0%</strong>. A futura ligação à A1 pode valorizar o imóvel em{' '}
+                                    <strong style={{ color: '#003366' }}>+€400-500k</strong> nos próximos anos.
+                                </p>
                             </div>
                         </div>
-
-                        <div className="border-t-2 border-gray-100 pt-6 md:pt-8">
-                            <h3 className="text-xl md:text-2xl font-bold text-[#003366] mb-4 md:mb-6 text-left">⭐ Destaques do Imóvel</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-left">
-                                {keyHighlights.map((highlight, index) => (
-                                    <motion.div key={index} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 + index * 0.06, duration: 0.45, ease: 'easeOut' }} className={`flex items-center gap-3 p-4 rounded-lg border-2 shadow-sm ${highlight.color === 'green' ? 'bg-green-50 border-green-200' : 'bg-blue-50 border-blue-200'}`}>
-                                        <span className={`text-xl md:text-2xl flex-shrink-0 font-bold ${highlight.color === 'green' ? 'text-green-600' : 'text-blue-600'}`}>{highlight.icon}</span>
-                                        <p className={`font-bold text-sm md:text-base leading-tight ${highlight.color === 'green' ? 'text-green-900' : 'text-blue-900'}`}>{highlight.text}</p>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: 'easeOut', delay: 0.95 }} className="mt-6 md:mt-8 bg-[#FFF8E1] border-2 border-yellow-400 rounded-xl p-5 md:p-8 shadow-lg text-left">
-                            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-6">
-                                <div className="text-4xl md:text-5xl bg-yellow-400 p-3 rounded-2xl shadow-inner flex-shrink-0">💡</div>
-                                <div>
-                                    <h4 className="font-black text-[#003366] text-lg md:text-2xl mb-2 md:mb-3">Porque é que este pavilhão vale €1.35M?</h4>
-                                    <p className="text-sm md:text-lg text-gray-800 leading-relaxed font-medium">
-                                        A <strong className="text-[#003366] bg-yellow-200 px-1 rounded">€511/m²</strong>, está <strong>40% abaixo</strong> do preço médio de Aveiro.
-                                        Com <strong>2.640m² de área bruta</strong> e <strong>4.272m² de terreno</strong>, tem capacidade para gerar <strong className="text-green-700"> €7.000-9.000/mês</strong> em arrendamento — um <strong>yield bruto de 6.2-8.0%</strong>. A futura ligação à A1 pode valorizar o imóvel em <strong className="text-[#003366]"> +€400-500k</strong> nos próximos anos.
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
                     </motion.div>
-                </div>
+                </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 1.05 }} className="mt-8 md:mt-12 text-center px-4">
-                    <button onClick={onNext} className="group w-full md:w-auto px-8 md:px-12 py-5 md:py-6 bg-gradient-to-r from-[#003366] to-[#0055aa] text-white font-black text-base md:text-xl rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_-10px_rgba(0,51,102,0.6)] hover:scale-[1.03] transition-all duration-300 inline-flex items-center justify-center gap-3">
+                {/* ── CTA ── */}
+                <motion.div {...fadeUp(1.1)} className="flex justify-center px-4">
+                    <button
+                        onClick={onNext}
+                        className="group w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 md:px-14 py-5 md:py-6 rounded-2xl font-black text-base md:text-lg text-white transition-all duration-300 hover:scale-[1.03]"
+                        style={{
+                            background: 'linear-gradient(135deg, #003366 0%, #0055aa 100%)',
+                            boxShadow: '0 8px 32px -4px rgba(0,51,102,0.45)',
+                        }}
+                    >
                         <span>Ver Condições Financeiras e ROI</span>
-                        <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </button>
                 </motion.div>
+
             </div>
         </div>
     );
