@@ -23,7 +23,7 @@ export default function Step5Offer() {
         return () => window.removeEventListener('scroll', handle);
     }, [triggered]);
 
-    const waLink = "https://wa.me/351XXXXXXXXX?text=Olá,%20gostaria%20de%20agendar%20visita%20e%20validar%20o%20yield%20do%20pavilhão%20em%20Amoreira%20da%20Gândara.";
+    const waLink = "https://wa.link/2oghu8";
 
     const financialBreakdown = [
         { label: 'Preço de Aquisição', value: '€1.350.000', size: 'lg', color: '#003366' },
