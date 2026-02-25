@@ -94,7 +94,7 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
               <ul className="space-y-2 text-sm" style={{ color: '#78350f' }}>
                 {[
                   ['Se quer Aveiro, ', 'já perdeu', ' — está tudo reservado'],
-                  ['Se esperar, vai pagar ', '€200-300/m² a mais', ' daqui a 1 ano'],
+                  ['Se esperar, vai pagar ', 'um valor muito superior', ' daqui a 1 ano'],
                   ['Mas há ', '1 alternativa', ' que 99% dos investidores ainda não descobriu'],
                 ].map(([a, b, c], i) => (
                   <li key={i} className="flex items-start gap-2">
@@ -127,7 +127,7 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
                 <div className="space-y-4 text-sm md:text-base">
                   {[
                     'O e-commerce <strong>duplicou</strong> a procura por armazéns desde 2020',
-                    'Grandes operadores pagam <strong>yields de 7-9%</strong> — muito acima do residencial',
+                    'Grandes operadores pagam <strong>yields altos</strong> — muito acima do residencial',
                     'Aveiro tornou-se <strong>o hub logístico</strong> da Região Centro',
                     'Resultado: <strong>procura 5x superior à oferta</strong>',
                   ].map((text, i) => (
@@ -149,11 +149,11 @@ export default function Step1MarketProblem({ onNext }: Step1Props) {
               <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: '#9ca3af' }}>Caso Real — Investidor Como Você</p>
               <p className="text-sm leading-relaxed" style={{ color: '#374151' }}>
                 <strong style={{ color: '#003366' }}>João, empresário de Coimbra</strong>, queria Aveiro Centro.
-                Esperou 8 meses por uma oportunidade. Quando apareceu, o preço tinha subido{' '}
-                <strong style={{ color: '#dc2626' }}>€280k</strong>.
+                Esperou 8 meses por uma oportunidade. Quando apareceu, o preço tinha subido{'—'}
+                <strong style={{ color: '#dc2626' }}>significativamente</strong>.
                 Decidiu investir numa <strong>alternativa estratégica</strong> a 15km de Aveiro.
-                Poupou €895k, arrendou por €9.000/mês, e tem{' '}
-                <strong style={{ color: '#16a34a' }}>yield de 8%</strong>.
+                Poupou uma fortuna em capital, arrendou rapidamente, e tem{' '}
+                <strong style={{ color: '#16a34a' }}>um yield superior a 8%</strong>.
               </p>
             </motion.div>
 

@@ -31,9 +31,9 @@ export default function Step2Solution({ onNext }: Step2Props) {
     ];
 
     const comparativeData = [
-        { location: 'Aveiro Centro', pricePerM2: '€850/m²', availability: 'Esgotado', waitTime: '12-18 meses', highlight: false },
-        { location: 'Oia / Oliveira do Bairro', pricePerM2: '€680/m²', availability: 'Crítico', waitTime: '8-12 meses', highlight: false },
-        { location: 'Amoreira da Gândara', pricePerM2: '€511/m²', availability: '✓ Disponível', waitTime: 'Imediato', highlight: true },
+        { location: 'Aveiro Centro', pricePerM2: 'Muito Elevado', availability: 'Esgotado', waitTime: '12-18 meses', highlight: false },
+        { location: 'Oia / Oliveira do Bairro', pricePerM2: 'Elevado', availability: 'Crítico', waitTime: '8-12 meses', highlight: false },
+        { location: 'Amoreira da Gândara', pricePerM2: 'Sob Consulta', availability: '✓ Disponível', waitTime: 'Imediato', highlight: true },
     ];
 
     return (
@@ -62,7 +62,7 @@ export default function Step2Solution({ onNext }: Step2Props) {
                     <motion.p {...fadeUp(0.13)} className="mt-5 text-base md:text-xl leading-relaxed max-w-3xl" style={{ color: '#374151' }}>
                         <strong style={{ color: '#003366' }}>Amoreira da Gândara</strong> está a <strong>15 minutos de Aveiro</strong>.
                         Dá-lhe acesso ao mesmo corredor logístico, às mesmas empresas, à mesma procura...
-                        mas poupa-lhe <strong style={{ color: '#16a34a' }}>€895.000</strong>.
+                        mas permite-lhe <strong style={{ color: '#16a34a' }}>uma poupança massiva de capital</strong>.
                     </motion.p>
 
                     {/* Green highlight box */}
@@ -77,7 +77,7 @@ export default function Step2Solution({ onNext }: Step2Props) {
                         <ol className="space-y-3 text-sm md:text-base" style={{ color: '#374151' }}>
                             {[
                                 ['Está disponível AGORA', ' — não precisa de esperar 12-18 meses'],
-                                ['Poupa €339/m²', ' vs. Aveiro Centro (€511 vs €850)'],
+                                ['Valor/m² altamente competitivo', ' — Significativamente abaixo da média de Aveiro'],
                                 ['Mesma procura logística', ' — empresas querem estar perto da A1/IC2'],
                                 ['Valorização futura garantida', ' — nova ligação à A1 em construção'],
                             ].map(([bold, rest], i) => (
@@ -220,8 +220,8 @@ export default function Step2Solution({ onNext }: Step2Props) {
                         style={{ background: '#eff6ff', borderLeft: '4px solid #003366' }}
                     >
                         <p className="text-sm leading-relaxed" style={{ color: '#374151' }}>
-                            <strong style={{ color: '#003366' }}>Vantagem Competitiva:</strong> Ao preço de €511/m², está a poupar <strong>€339/m²</strong> vs. Aveiro Centro.
-                            Num pavilhão de 2.640m², isso representa uma poupança de <strong>€894.960</strong> — capital que pode reinvestir ou usar para melhorias.
+                            <strong style={{ color: '#003366' }}>Vantagem Competitiva:</strong> Com um valor por m² significativamente abaixo de Aveiro Centro, este ativo representa uma oportunidade única de aquisição.
+                            Ao investir neste pavilhão, liberta capital para expansão ou melhorias operacionais imediatas.
                         </p>
                     </div>
                 </motion.div>

@@ -26,8 +26,8 @@ export default function Step5Offer() {
     const waLink = "https://wa.link/2oghu8";
 
     const financialBreakdown = [
-        { label: 'Preço de Aquisição', value: '€1.350.000', size: 'lg', color: '#003366' },
-        { label: 'Preço por m²', value: '€511/m²', size: 'md', color: '#16a34a', note: '40% abaixo de Aveiro Centro' },
+        { label: 'Preço de Aquisição', value: 'Sob Consulta', size: 'lg', color: '#003366' },
+        { label: 'Preço por m²', value: 'Incrível', size: 'md', color: '#16a34a', note: 'Significativamente abaixo de Aveiro Centro' },
         { label: 'Área Bruta', value: '2.640 m²', size: 'sm', color: '#003366' },
         { label: 'Terreno Total', value: '4.272 m²', size: 'sm', color: '#003366' },
     ];
@@ -35,8 +35,8 @@ export default function Step5Offer() {
     const roiScenarios = [
         {
             scenario: 'Arrendamento Conservador',
-            monthlyRent: '€7.000',
-            annualIncome: '€84.000',
+            monthlyRent: 'Sob Consulta',
+            annualIncome: 'Sob Consulta',
             grossYield: '6.2%',
             netYield: '4.8%',
             description: 'Empresa de logística local',
@@ -44,8 +44,8 @@ export default function Step5Offer() {
         },
         {
             scenario: 'Arrendamento Otimista',
-            monthlyRent: '€9.000',
-            annualIncome: '€108.000',
+            monthlyRent: 'Sob Consulta',
+            annualIncome: 'Sob Consulta',
             grossYield: '8.0%',
             netYield: '6.2%',
             description: 'Operador logístico nacional',
@@ -96,10 +96,10 @@ export default function Step5Offer() {
                                         <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5" style={{ background: '#f0f9ff', border: '1px solid #bae6fd' }}>
                                             💬
                                         </div>
-                                        <h3 className="text-2xl md:text-3xl font-black mb-3" style={{ color: '#003366' }}>Ficou com alguma dúvida?</h3>
+                                        <h3 className="text-2xl md:text-3xl font-black mb-3" style={{ color: '#003366' }}>Quer ver o preço e mais fotos?</h3>
                                         <p className="text-base leading-relaxed mb-7" style={{ color: '#6b7280' }}>
-                                            Para validar os dados de rentabilidade ou agendar uma visita ao ativo,{' '}
-                                            <strong style={{ color: '#003366' }}>pode contactar-me</strong> diretamente através do WhatsApp.
+                                            Para aceder ao dossier completo (preço, fotos, vídeos) e validar os dados de rentabilidade,{' '}
+                                            <strong style={{ color: '#003366' }}>contacte-me agora</strong> via WhatsApp.
                                         </p>
                                         <a
                                             href={waLink}
@@ -108,7 +108,7 @@ export default function Step5Offer() {
                                             className="block w-full py-4 rounded-xl font-black text-lg text-white transition-all hover:scale-[1.02]"
                                             style={{ background: 'linear-gradient(135deg, #003366, #0055aa)', boxShadow: '0 8px 24px rgba(0,51,102,0.35)' }}
                                         >
-                                            Iniciar Conversa no WhatsApp
+                                            Ver Preço e Fotos via WhatsApp
                                         </a>
                                         <button
                                             onClick={() => setShowPopup(false)}
@@ -141,7 +141,7 @@ export default function Step5Offer() {
                             Análise Financeira Completa
                         </motion.h1>
                         <motion.p {...fadeUp(0.13)} className="mt-4 text-base md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#6b7280' }}>
-                            Todos os números, transparentes. Todos os cenários, calculados. Tome a decisão mais informada da sua vida.
+                            Todos os cenários, calculados. Para ver o preço de fecho e fotos exclusivas, solicite o dossier completo.
                         </motion.p>
                     </div>
 
@@ -158,25 +158,25 @@ export default function Step5Offer() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-8 pb-8" style={{ borderBottom: '1.5px solid #f3f4f6' }}>
                             <div>
                                 <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#9ca3af' }}>Valor de Avaliação Bancária:</p>
-                                <p className="text-3xl md:text-4xl font-black line-through" style={{ color: '#d1d5db' }}>1.400.000€</p>
+                                <p className="text-3xl md:text-4xl font-black blur-sm select-none" style={{ color: '#d1d5db' }}>1.400.000€</p>
                                 <p className="text-xs mt-1" style={{ color: '#9ca3af' }}>Avaliação independente — Dezembro 2025</p>
                             </div>
                             <div className="md:text-right">
                                 <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#003366' }}>Preço de Fecho Negociado:</p>
-                                <motion.p
+                                <motion.div
                                     initial={{ scale: 0.85, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     transition={{ delay: 0.4, duration: 0.5, type: 'spring', stiffness: 200 }}
-                                    className="text-5xl md:text-6xl font-black"
-                                    style={{ color: '#003366' }}
+                                    className="text-2xl md:text-3xl font-black px-6 py-2 rounded-xl inline-block"
+                                    style={{ background: '#003366', color: '#ffffff' }}
                                 >
-                                    1.350.000€
-                                </motion.p>
+                                    Sob Consulta
+                                </motion.div>
                                 <div
-                                    className="inline-block mt-2 px-4 py-1.5 rounded-full text-xs font-bold"
+                                    className="block md:inline-block mt-3 px-4 py-1.5 rounded-full text-xs font-bold"
                                     style={{ background: '#dcfce7', color: '#15803d', border: '1px solid #86efac' }}
                                 >
-                                    💰 Poupança imediata: €50.000
+                                    💰 Poupança imediata via portal: €100.000
                                 </div>
                             </div>
                         </div>
@@ -262,13 +262,13 @@ export default function Step5Offer() {
                             </h4>
                             <p className="text-sm leading-relaxed mb-4" style={{ color: '#374151' }}>
                                 Com a conclusão da <strong>ligação à A1</strong> (prevista para 2027-2028),
-                                pavilhões industriais em Amoreira da Gândara podem valorizar <strong>+35-45%</strong>.
+                                pavilhões industriais em Amoreira da Gândara podem ter uma valorização massiva.
                             </p>
                             <div className="rounded-xl p-4 flex flex-col sm:flex-row justify-between items-center gap-2" style={{ background: '#ffffff', border: '1px solid #bfdbfe' }}>
                                 <span className="text-sm font-semibold" style={{ color: '#374151' }}>Valor Estimado em 2028:</span>
-                                <span className="text-2xl md:text-3xl font-black" style={{ color: '#003366' }}>€1.82M - €1.96M</span>
+                                <span className="text-2xl md:text-3xl font-black" style={{ color: '#003366' }}>Sob Consulta</span>
                             </div>
-                            <p className="text-xs font-bold mt-2 text-right" style={{ color: '#16a34a' }}>Ganho de capital potencial: +€470k - €610k</p>
+                            <p className="text-xs font-bold mt-2 text-right" style={{ color: '#16a34a' }}>Ganho de capital potencial: Significativo</p>
                         </div>
 
                         <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)', marginBottom: '2rem' }} />
@@ -292,9 +292,9 @@ export default function Step5Offer() {
                                 >
                                     Oferta Exclusiva Limitada
                                 </div>
-                                <h3 className="text-3xl md:text-4xl font-black text-white mb-3">Desconto Imediato de €50.000</h3>
+                                <h3 className="text-3xl md:text-4xl font-black text-white mb-3">Poupança Imediata de €100.000</h3>
                                 <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto">
-                                    Beneficie de condições únicas ao contactar o proprietário diretamente através deste portal oficial.
+                                    Beneficie de condições únicas e poupe 100k ao contactar o proprietário diretamente através deste portal oficial.
                                 </p>
                             </div>
 
@@ -306,19 +306,19 @@ export default function Step5Offer() {
                                 <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-6">
                                     <div className="text-center">
                                         <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-1">Preço de Mercado</p>
-                                        <p className="text-3xl md:text-4xl font-black line-through" style={{ color: 'rgba(255,255,255,0.4)' }}>€1.350.000</p>
+                                        <p className="text-3xl md:text-4xl font-black blur-sm select-none" style={{ color: 'rgba(255,255,255,0.4)' }}>VALOR X</p>
                                     </div>
                                     <svg className="hidden md:block w-8 h-8 shrink-0" fill="none" stroke="#FFCC00" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                     </svg>
                                     <div className="text-center">
                                         <p className="text-xs font-black uppercase tracking-widest mb-1" style={{ color: '#FFCC00' }}>Preço com Acordo Direto</p>
-                                        <p className="text-5xl md:text-6xl font-black" style={{ color: '#FFCC00' }}>€1.300.000</p>
+                                        <p className="text-4xl md:text-5xl font-black" style={{ color: '#FFCC00' }}>Sob Consulta</p>
                                     </div>
                                 </div>
                                 <div className="text-center" style={{ borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '1.5rem' }}>
                                     <p className="text-xl md:text-2xl font-black text-white">
-                                        POUPANÇA TOTAL: <span style={{ color: '#FFCC00' }}>€50.000</span>
+                                        POUPANÇA TOTAL: <span style={{ color: '#FFCC00' }}>€100.000</span>
                                     </p>
                                 </div>
                             </div>
