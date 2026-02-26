@@ -68,7 +68,7 @@ export default function Step4Final() {
                         {[
                             { label: 'Área Bruta', value: '2.640 m²' },
                             { label: 'Terreno', value: '4.272 m²' },
-                            { label: 'Licença', value: 'Industrial' },
+                            { label: 'Licença', value: 'Industrial B' },
                             { label: 'Energia', value: 'PT Próprio' },
                         ].map((item, i) => (
                             <div key={i} className="bg-white/50 backdrop-blur-sm p-3 rounded-2xl border border-gray-200">
@@ -83,7 +83,11 @@ export default function Step4Final() {
                         {...fadeUp(0.3)}
                         className="flex flex-col items-start max-w-sm mx-auto gap-4 mb-12"
                     >
-                        {features.map((feature, i) => (
+                        {[
+                            ...features,
+                            "Zonas de Escritório e Refeitório",
+                            "Balneários e WC equipados",
+                        ].map((feature, i) => (
                             <div key={i} className="flex items-center gap-4 text-left">
                                 <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0" style={{ background: '#16a34a' }}>
                                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
