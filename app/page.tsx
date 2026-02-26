@@ -5,20 +5,18 @@ import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import Step1MarketProblem from './components/Step1MarketProblem';
 import Step2Solution from './components/Step2Solution';
 import Step3SocialProof from './components/Step3SocialProof';
-import Step4Asset from './components/Step4Asset';
-import Step5Offer from './components/Step5Offer';
+import Step4Final from './components/Step4Final';
 
 const stepNames: Record<number, string> = {
   1: 'Mercado',
   2: 'Estratégia',
-  3: 'Ocupação',
-  4: 'O Ativo',
-  5: 'ROI Final',
+  3: 'Tese de Valor',
+  4: 'Dossier Final',
 };
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 5;
+  const totalSteps = 4;
 
   useEffect(() => {
     import('./utils/fb-events').then(({ trackMetaEvent }) => {
@@ -148,8 +146,7 @@ export default function Home() {
               {currentStep === 1 && <Step1MarketProblem onNext={nextStep} />}
               {currentStep === 2 && <Step2Solution onNext={nextStep} />}
               {currentStep === 3 && <Step3SocialProof onNext={nextStep} />}
-              {currentStep === 4 && <Step4Asset onNext={nextStep} />}
-              {currentStep === 5 && <Step5Offer />}
+              {currentStep === 4 && <Step4Final />}
             </motion.div>
           </AnimatePresence>
         </div>

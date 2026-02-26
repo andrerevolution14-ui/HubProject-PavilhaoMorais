@@ -153,6 +153,13 @@ export default function Step3SocialProof({ onNext }: Step3Props) {
                         </div>
                     </motion.div>
 
+                    {/* ── Transition Text ── */}
+                    <motion.div {...fadeUp(0.5)} className="max-w-2xl mx-auto">
+                        <p className="text-lg md:text-xl font-bold leading-relaxed" style={{ color: '#003366' }}>
+                            Esta tese de valorização materializa-se num ativo logístico de 2.500m² disponível na região, com um custo de entrada altamente competitivo face à média do mercado.
+                        </p>
+                    </motion.div>
+
                     {/* ── CTA ── */}
                     <motion.div {...fadeUp(0.55)} className="flex justify-center px-4">
                         <button
