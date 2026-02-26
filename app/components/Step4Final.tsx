@@ -60,6 +60,24 @@ export default function Step4Final() {
                         Por questões de discrição e exclusividade da operação, partilhamos o dossier de fotos, a localização exata e as condições de venda apenas de forma direta.
                     </motion.p>
 
+                    {/* ── Technical Summary Card ── */}
+                    <motion.div
+                        {...fadeUp(0.25)}
+                        className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 text-left"
+                    >
+                        {[
+                            { label: 'Área Bruta', value: '2.640 m²' },
+                            { label: 'Terreno', value: '4.272 m²' },
+                            { label: 'Licença', value: 'Industrial' },
+                            { label: 'Energia', value: 'PT Próprio' },
+                        ].map((item, i) => (
+                            <div key={i} className="bg-white/50 backdrop-blur-sm p-3 rounded-2xl border border-gray-200">
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">{item.label}</p>
+                                <p className="text-sm md:text-base font-black text-[#003366]">{item.value}</p>
+                            </div>
+                        ))}
+                    </motion.div>
+
                     {/* ── Checklist ── */}
                     <motion.div
                         {...fadeUp(0.3)}
