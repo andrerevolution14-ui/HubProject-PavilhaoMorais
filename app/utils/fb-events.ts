@@ -12,6 +12,25 @@ export const trackMetaEvent = async (
     const eventId = `event_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
     const eventSourceUrl = typeof window !== 'undefined' ? window.location.href : '';
 
+    // Função para obter cookies
+    const getCookie = (name: string) => {
+        if (typeof document === 'undefined') return undefined;
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop()?.split(';').shift();
+        return undefined;
+    };
+
+    // Obter IDs da Meta
+    const fbp = getCookie('_fbp');
+    const fbc = getCookie('_fbc');
+
+    const enhancedUserData = {
+        ...userData,
+        fbp,
+        fbc,
+    };
+
     // 2. Disparar via Pixel (Browser)
     if (typeof window !== 'undefined' && window.fbq) {
         window.fbq('track', eventName, {
@@ -29,7 +48,7 @@ export const trackMetaEvent = async (
                 eventName,
                 eventId,
                 eventSourceUrl,
-                userData,
+                userData: enhancedUserData,
                 customData
             }),
         });

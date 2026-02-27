@@ -3,11 +3,21 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { fadeUp } from '../utils/animations';
+import { trackMetaEvent } from '../utils/fb-events';
 
 
 export default function Step5Offer() {
     const [showPopup, setShowPopup] = useState(false);
     const [triggered, setTriggered] = useState(false);
+
+    const handleWhatsAppClick = (location: string) => {
+        trackMetaEvent('Contact', {
+            content_category: 'Lead Generation',
+            content_name: `WhatsApp Offer Inquiry (${location})`,
+            value: 0.00,
+            currency: 'EUR'
+        });
+    };
 
     useEffect(() => {
         const handle = () => {
@@ -105,6 +115,7 @@ export default function Step5Offer() {
                                             href={waLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => handleWhatsAppClick('Popup')}
                                             className="block w-full py-4 rounded-xl font-black text-lg text-white transition-all hover:scale-[1.02]"
                                             style={{ background: 'linear-gradient(135deg, #003366, #0055aa)', boxShadow: '0 8px 24px rgba(0,51,102,0.35)' }}
                                         >
@@ -347,6 +358,7 @@ export default function Step5Offer() {
                             href={waLink}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => handleWhatsAppClick('Bottom')}
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.75, duration: 0.45, ease: 'easeOut' }}

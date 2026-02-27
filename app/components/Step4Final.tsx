@@ -8,10 +8,12 @@ export default function Step4Final() {
     const waLink = "https://wa.link/2oghu8";
 
     const handleWhatsAppClick = () => {
+        // Disparar evento de contacto para o Facebook Ads Manager
         trackMetaEvent('Contact', {
-            method: 'WhatsApp',
-            content_name: 'Dossier Request',
-            step: 4
+            content_category: 'Lead Generation',
+            content_name: 'WhatsApp Dossier Request',
+            value: 0.00,
+            currency: 'EUR'
         });
     };
 

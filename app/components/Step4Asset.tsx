@@ -3,12 +3,22 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { fadeUp } from '../utils/animations';
+import { trackMetaEvent } from '../utils/fb-events';
 
 interface Step4Props {
     onNext: () => void;
 }
 
 export default function Step4Asset({ onNext }: Step4Props) {
+    const handleWhatsAppClick = () => {
+        trackMetaEvent('Contact', {
+            content_category: 'Lead Generation',
+            content_name: 'WhatsApp Asset Inquiry',
+            value: 0.00,
+            currency: 'EUR'
+        });
+    };
+
     const technicalSpecs = [
         { label: 'Área Bruta', value: '2.640 m²', icon: '📐', detail: '2.530 m² úteis' },
         { label: 'Terreno Total', value: '4.272 m²', icon: '🏗️', detail: 'Amplo espaço exterior' },
@@ -255,6 +265,7 @@ export default function Step4Asset({ onNext }: Step4Props) {
                         href="https://wa.link/2oghu8"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={handleWhatsAppClick}
                         className="group w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 md:px-14 py-5 md:py-6 rounded-2xl font-black text-base md:text-lg transition-all duration-300 hover:scale-[1.03]"
                         style={{
                             background: '#ffffff',
