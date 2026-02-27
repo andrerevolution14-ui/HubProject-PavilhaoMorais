@@ -2,9 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { fadeUp } from '../utils/animations';
+import { trackMetaEvent } from '../utils/fb-events';
 
 export default function Step4Final() {
     const waLink = "https://wa.link/2oghu8";
+
+    const handleWhatsAppClick = () => {
+        trackMetaEvent('Contact', {
+            method: 'WhatsApp',
+            content_name: 'Dossier Request',
+            step: 4
+        });
+    };
 
     const features = [
         "Fotos reais (Interior e Exterior)",
@@ -108,6 +117,7 @@ export default function Step4Final() {
                             href={waLink}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={handleWhatsAppClick}
                             className="group w-full md:w-auto inline-flex items-center justify-center gap-4 px-8 md:px-12 py-6 md:py-8 rounded-3xl font-black text-lg md:text-2xl text-white transition-all duration-300 hover:scale-[1.05] shadow-[0_20px_50px_rgba(37,211,102,0.3)] hover:shadow-[0_25px_60px_rgba(37,211,102,0.4)]"
                             style={{
                                 background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
